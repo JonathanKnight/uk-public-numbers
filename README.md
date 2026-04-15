@@ -10,7 +10,7 @@ A public-interest website presenting official UK government statistics in a clea
 
 ## Why this exists
 
-Politicians and journalists frequently cite government statistics selectively, out of context, or incorrectly. This site aims to make the authoritative numbers easy to find, verify, and share — reducing the ability to mislead through selective citation.
+Politicians and journalists frequently cite government statistics selectively, out of context, or incorrectly. This site aims to make the authoritative numbers easy to find, verify, and share — reducing the ability to mislead through selective citation. The data is designed to be easy to understand using charts and comparisons.
 
 ---
 
