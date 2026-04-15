@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import MetricCard from '../components/MetricCard.astro';
+
+import nhs from '../../data/nhs.json';
+import economy from '../../data/economy.json';
+import crime from '../../data/crime.json';
+import education from '../../data/education.json';
+import jobs from '../../data/jobs.json';
+---
+
+<Base title="UK Public Numbers — Government statistics, unspun">
+  <div class="hero">
+    <div class="hero-label">Updated from official sources · Last build: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+    <h2 class="hero-headline">The numbers that shape public debate — from the only sources that matter.</h2>
+    <p class="hero-sub">Every figure on this site is sourced directly from official UK government statistics or independent national bodies. No commentary. No spin. Source links on every number.</p>
+  </div>
+
+  <div class="freshness-bar">
+    <span class="freshness-dot"></span>
+    Placeholder data — live API integration coming in stage two. All figures are illustrative of real recent values. Check source links for the latest.
+  </div>
+
+  <!-- NHS -->
+  <div class="section-header">
+    <h2 class="section-title">NHS &amp; Health</h2>
+    <span class="section-meta">NHS England</span>
+    <a href="/uk-public-numbers/nhs" class="section-source-link">All NHS metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={nhs.ae_4hr_target} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.elective_waiting_list} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.waiting_over_18_weeks} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.nhs_vacancy_rate} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+  </div>
+
+  <!-- Spending & Debt -->
+  <div class="section-header">
+    <h2 class="section-title">Spending &amp; Debt</h2>
+    <span class="section-meta">ONS / OBR</span>
+    <a href="/uk-public-numbers/spending" class="section-source-link">All spending metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={economy.national_debt_pct_gdp} sourceUrl={economy._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={economy.annual_borrowing} sourceUrl={economy._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={economy.debt_interest} sourceUrl={economy._meta.source_url} sourceLabel="OBR" />
+    <MetricCard metric={economy.total_spending} sourceUrl={economy._meta.source_url} sourceLabel="ONS" />
+  </div>
+
+  <!-- Crime -->
+  <div class="section-header">
+    <h2 class="section-title">Crime &amp; Justice</h2>
+    <span class="section-meta">ONS / Home Office</span>
+    <a href="/uk-public-numbers/crime" class="section-source-link">All crime metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={crime.total_crime} sourceUrl={crime._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={crime.charge_rate} sourceUrl={crime._meta.source_url} sourceLabel="Home Office" />
+    <MetricCard metric={crime.crown_court_backlog} sourceUrl={crime._meta.source_url} sourceLabel="Ministry of Justice" />
+  </div>
+
+  <!-- Education -->
+  <div class="section-header">
+    <h2 class="section-title">Education</h2>
+    <span class="section-meta">DfE / OECD</span>
+    <a href="/uk-public-numbers/education" class="section-source-link">All education metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={education.gcse_english_maths} sourceUrl={education._meta.source_url} sourceLabel="DfE" />
+    <MetricCard metric={education.pisa_maths_rank} sourceUrl={education._meta.source_url} sourceLabel="OECD PISA" />
+    <MetricCard metric={education.ofsted_good_outstanding} sourceUrl={education._meta.source_url} sourceLabel="Ofsted" />
+  </div>
+
+  <!-- Jobs & Economy -->
+  <div class="section-header">
+    <h2 class="section-title">Jobs &amp; Economy</h2>
+    <span class="section-meta">ONS Labour Force Survey</span>
+    <a href="/uk-public-numbers/economy" class="section-source-link">All economy metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={jobs.unemployment_rate} sourceUrl={jobs._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={jobs.economic_inactivity} sourceUrl={jobs._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={jobs.real_wages_growth} sourceUrl={jobs._meta.source_url} sourceLabel="ONS" />
+    <MetricCard metric={jobs.child_poverty} sourceUrl={jobs._meta.source_url} sourceLabel="ONS" />
+  </div>
+</Base>

@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "source": "Department for Education / PISA (OECD)",
+    "source_url": "https://www.gov.uk/government/collections/statistics-gcses-key-stage-4",
+    "last_updated": "2024-01-01",
+    "methodology": "GCSE results from DfE national statistics. PISA rankings from OECD Programme for International Student Assessment, conducted every 3 years."
+  },
+  "gcse_english_maths": {
+    "label": "GCSE grade 4+ in English & Maths",
+    "value": 64.9,
+    "unit": "%",
+    "direction": "higher_is_better",
+    "period": "2023",
+    "note": "Grade 4 is a 'standard pass'. Required for most further education and many jobs."
+  },
+  "pisa_maths_rank": {
+    "label": "PISA maths ranking",
+    "value": 11,
+    "unit": "out of 81",
+    "direction": "lower_is_better",
+    "period": "2022",
+    "note": "UK ranked 11th globally for maths in the OECD PISA 2022 assessment. Singapore ranked 1st."
+  },
+  "ofsted_good_outstanding": {
+    "label": "Schools rated Good or Outstanding",
+    "value": 88,
+    "unit": "%",
+    "direction": "higher_is_better",
+    "period": "2023",
+    "note": "Percentage of state-funded schools in England rated Good or Outstanding by Ofsted."
+  }
+}

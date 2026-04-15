@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "source": "ONS Crime Survey for England and Wales / Home Office",
+    "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice",
+    "last_updated": "2024-01-01",
+    "methodology": "Crime Survey for England and Wales is a victimisation survey — it asks people about their experiences of crime rather than relying on police records, making it more consistent over time."
+  },
+  "total_crime": {
+    "label": "Crime incidents per year",
+    "value": 8900000,
+    "unit": "incidents",
+    "direction": "lower_is_better",
+    "period": "Year to June 2023",
+    "note": "CSEW estimate. Excludes fraud and computer misuse. Long-run trend is downward from 1990s peak."
+  },
+  "charge_rate": {
+    "label": "Crimes resulting in a charge",
+    "value": 5.6,
+    "unit": "%",
+    "direction": "higher_is_better",
+    "period": "Year to March 2023",
+    "note": "Less than 6 in every 100 crimes recorded by police result in a suspect being charged. Rarely cited in political debate."
+  },
+  "crown_court_backlog": {
+    "label": "Crown Court case backlog",
+    "value": 64000,
+    "unit": "cases",
+    "direction": "lower_is_better",
+    "period": "Q3 2023",
+    "note": "Cases waiting to be heard. Some defendants wait years for trial. Pre-pandemic level was ~37,000."
+  }
+}

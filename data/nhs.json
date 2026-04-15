@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "source": "NHS England Statistical Release",
+    "source_url": "https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/",
+    "last_updated": "2024-01-01",
+    "next_expected": "2024-02-01",
+    "methodology": "Monthly A&E Attendances and Emergency Admissions. Four-hour standard measured as percentage of all A&E attendances where time from arrival to admission, transfer or discharge was under four hours."
+  },
+  "ae_4hr_target": {
+    "label": "A&E seen within 4 hours",
+    "value": 73.4,
+    "unit": "%",
+    "target": 95,
+    "target_label": "NHS target: 95%",
+    "direction": "higher_is_better",
+    "period": "December 2023",
+    "note": "Target has not been met since July 2015"
+  },
+  "elective_waiting_list": {
+    "label": "Patients on elective waiting list",
+    "value": 7600000,
+    "unit": "people",
+    "direction": "lower_is_better",
+    "period": "November 2023",
+    "note": "Record high. Includes all patients waiting for consultant-led elective care."
+  },
+  "waiting_over_18_weeks": {
+    "label": "Waiting over 18 weeks",
+    "value": 43.2,
+    "unit": "%",
+    "target": 0,
+    "target_label": "Legal standard: 0% over 18 weeks",
+    "direction": "lower_is_better",
+    "period": "November 2023",
+    "note": "The NHS Constitution gives patients a legal right to start treatment within 18 weeks."
+  },
+  "nhs_vacancy_rate": {
+    "label": "NHS vacancy rate",
+    "value": 8.4,
+    "unit": "%",
+    "direction": "lower_is_better",
+    "period": "Q3 2023",
+    "note": "Approximately 112,000 full-time equivalent vacancies across NHS trusts in England."
+  }
+}

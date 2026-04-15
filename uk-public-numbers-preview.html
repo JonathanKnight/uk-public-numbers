@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK Public Numbers — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1208;
+      --ink-muted: #5c5240;
+      --ink-faint: #9c8e7e;
+      --paper: #faf7f2;
+      --paper-warm: #f5f0e8;
+      --paper-rule: #e8e0d0;
+      --accent: #c0392b;
+      --accent-amber: #d4850a;
+      --accent-green: #1a6b3a;
+      --accent-blue: #1a4a7a;
+      --good: #1a6b3a;
+      --bad: #c0392b;
+      --mono: 'JetBrains Mono', monospace;
+      --serif: 'Source Serif 4', Georgia, serif;
+      --display: 'Playfair Display', Georgia, serif;
+      --col-width: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* HEADER */
+    .site-header { background: var(--ink); color: var(--paper); border-bottom: 3px solid var(--accent); }
+    .header-inner { max-width: var(--col-width); margin: 0 auto; padding: 0 2rem; }
+    .header-top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.7rem; font-family: var(--mono); letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    .header-main { padding: 2rem 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .site-title {
+      font-family: var(--display); font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; letter-spacing: -0.02em; line-height: 1; color: var(--paper);
+    }
+    .site-strapline {
+      font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+      color: rgba(255,255,255,0.55); margin-top: 0.4rem; font-weight: 300;
+    }
+    .site-nav { display: flex; gap: 0; padding: 0; overflow-x: auto; scrollbar-width: none; }
+    .nav-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.85rem 1.1rem; font-family: var(--mono); font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      border-right: 1px solid rgba(255,255,255,0.08); transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:first-child { border-left: 1px solid rgba(255,255,255,0.08); }
+    .nav-link:hover { color: var(--paper); background: rgba(255,255,255,0.06); }
+    .nav-link--github { margin-left: auto; border-left: 1px solid rgba(255,255,255,0.08); }
+
+    /* MAIN */
+    .site-main { max-width: var(--col-width); margin: 0 auto; padding: 3rem 2rem; }
+
+    /* HERO */
+    .hero { border-bottom: 1px solid var(--paper-rule); padding-bottom: 2.5rem; margin-bottom: 3rem; }
+    .hero-label {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .hero-headline {
+      font-family: var(--display); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700; line-height: 1.2; max-width: 32ch; color: var(--ink);
+    }
+    .hero-sub {
+      margin-top: 1rem; max-width: 60ch; font-size: 1.05rem;
+      color: var(--ink-muted); font-weight: 300; line-height: 1.7;
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--ink);
+    }
+    .section-title { font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+    .section-meta { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+    .section-source-link { margin-left: auto; font-family: var(--mono); font-size: 0.68rem; color: var(--accent-blue); text-decoration: none; letter-spacing: 0.04em; }
+    .section-source-link:hover { text-decoration: underline; }
+
+    /* METRIC GRID */
+    .metric-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px; background: var(--paper-rule);
+      border: 1px solid var(--paper-rule); margin-bottom: 3.5rem;
+    }
+    .metric-card {
+      background: var(--paper); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: background 0.15s; position: relative;
+    }
+    .metric-card:hover { background: var(--paper-warm); }
+    .metric-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .metric-card.bad::before { background: var(--bad); }
+    .metric-card.good::before { background: var(--good); }
+    .metric-card.neutral::before { background: var(--accent-amber); }
+
+    .metric-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-muted); }
+    .metric-value { font-family: var(--display); font-size: 2.4rem; font-weight: 700; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+    .metric-value .unit { font-family: var(--serif); font-size: 1rem; font-weight: 300; color: var(--ink-muted); margin-left: 0.2rem; }
+    .metric-target { font-family: var(--mono); font-size: 0.68rem; color: var(--bad); letter-spacing: 0.03em; }
+    .metric-target.on-track { color: var(--good); }
+    .metric-period { font-size: 0.78rem; color: var(--ink-faint); font-style: italic; }
+    .metric-note { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.5; padding-top: 0.4rem; border-top: 1px solid var(--paper-rule); margin-top: auto; }
+    .metric-source-link { font-family: var(--mono); font-size: 0.64rem; color: var(--accent-blue); text-decoration: none; letter-spacing: 0.04em; margin-top: 0.5rem; }
+    .metric-source-link:hover { text-decoration: underline; }
+
+    /* FRESHNESS BANNER */
+    .freshness-bar {
+      background: var(--paper-warm); border: 1px solid var(--paper-rule);
+      border-left: 3px solid var(--accent-amber); padding: 0.6rem 1rem;
+      margin-bottom: 2rem; font-family: var(--mono); font-size: 0.7rem;
+      color: var(--ink-muted); letter-spacing: 0.04em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .freshness-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); flex-shrink: 0; }
+
+    /* FOOTER */
+    .site-footer { background: var(--ink); color: rgba(255,255,255,0.5); margin-top: 5rem; padding: 2.5rem 0; }
+    .footer-inner { max-width: var(--col-width); margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-mission { font-size: 0.88rem; line-height: 1.7; max-width: 65ch; }
+    .footer-mission a { color: rgba(255,255,255,0.75); }
+    .footer-sources { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 640px) {
+      .site-main { padding: 2rem 1rem; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .header-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>Office for National Statistics · NHS England · Home Office · DfE</div>
+      <div class="header-tag">Data verified from official sources</div>
+    </div>
+    <div class="header-main">
+      <h1 class="site-title">UK Public Numbers</h1>
+      <p class="site-strapline">Government statistics, unspun.</p>
+    </div>
+    <nav class="site-nav">
+      <a href="#" class="nav-link">Overview</a>
+      <a href="#nhs" class="nav-link">NHS</a>
+      <a href="#spending" class="nav-link">Spending</a>
+      <a href="#crime" class="nav-link">Crime</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#economy" class="nav-link">Economy</a>
+      <a href="https://github.com/your-username/uk-public-numbers" class="nav-link nav-link--github" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        Source code
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main">
+
+  <div class="hero">
+    <div class="hero-label">Updated from official sources · Last build: 14 April 2025</div>
+    <h2 class="hero-headline">The numbers that shape public debate — from the only sources that matter.</h2>
+    <p class="hero-sub">Every figure on this site is sourced directly from official UK government statistics or independent national bodies. No commentary. No spin. Source links on every number.</p>
+  </div>
+
+  <div class="freshness-bar">
+    <span class="freshness-dot"></span>
+    Placeholder data — live API integration coming in stage two. All figures are illustrative of real recent values. Check source links for the latest.
+  </div>
+
+  <!-- NHS -->
+  <div class="section-header" id="nhs">
+    <h2 class="section-title">NHS &amp; Health</h2>
+    <span class="section-meta">NHS England</span>
+    <a href="https://www.england.nhs.uk/statistics/" class="section-source-link">All NHS metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card bad">
+      <div class="metric-label">A&amp;E seen within 4 hours</div>
+      <div class="metric-value">73.4<span class="unit">%</span></div>
+      <div class="metric-target">NHS target: 95%</div>
+      <div class="metric-period">December 2023</div>
+      <div class="metric-note">Target has not been met since July 2015</div>
+      <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="metric-source-link" target="_blank">→ Source: NHS England</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Patients on elective waiting list</div>
+      <div class="metric-value">7.6<span class="unit">m people</span></div>
+      <div class="metric-period">November 2023</div>
+      <div class="metric-note">Record high. Includes all patients waiting for consultant-led elective care.</div>
+      <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="metric-source-link" target="_blank">→ Source: NHS England</a>
+    </div>
+    <div class="metric-card bad">
+      <div class="metric-label">Waiting over 18 weeks</div>
+      <div class="metric-value">43.2<span class="unit">%</span></div>
+      <div class="metric-target">Legal standard: 0% over 18 weeks</div>
+      <div class="metric-period">November 2023</div>
+      <div class="metric-note">The NHS Constitution gives patients a legal right to start treatment within 18 weeks.</div>
+      <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="metric-source-link" target="_blank">→ Source: NHS England</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">NHS vacancy rate</div>
+      <div class="metric-value">8.4<span class="unit">%</span></div>
+      <div class="metric-period">Q3 2023</div>
+      <div class="metric-note">Approximately 112,000 full-time equivalent vacancies across NHS trusts in England.</div>
+      <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/" class="metric-source-link" target="_blank">→ Source: NHS England</a>
+    </div>
+  </div>
+
+  <!-- Spending & Debt -->
+  <div class="section-header" id="spending">
+    <h2 class="section-title">Spending &amp; Debt</h2>
+    <span class="section-meta">ONS / OBR</span>
+    <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending" class="section-source-link">All spending metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card neutral">
+      <div class="metric-label">National debt</div>
+      <div class="metric-value">97.7<span class="unit">% of GDP</span></div>
+      <div class="metric-period">November 2023</div>
+      <div class="metric-note">Highest sustained level since early 1960s. Excludes Bank of England.</div>
+      <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Annual borrowing (deficit)</div>
+      <div class="metric-value">£124<span class="unit">bn</span></div>
+      <div class="metric-period">2023/24 forecast</div>
+      <div class="metric-note">The amount the government borrows each year because spending exceeds tax revenues.</div>
+      <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Debt interest payments</div>
+      <div class="metric-value">£110<span class="unit">bn</span></div>
+      <div class="metric-period">2023/24 forecast</div>
+      <div class="metric-note">More than the entire schools budget. Driven by high inflation increasing index-linked gilt costs.</div>
+      <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending" class="metric-source-link" target="_blank">→ Source: OBR</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Total government spending</div>
+      <div class="metric-value">£1.19<span class="unit">tn</span></div>
+      <div class="metric-period">2023/24 forecast</div>
+      <div class="metric-note">Total Managed Expenditure. Includes all day-to-day and capital spending.</div>
+      <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+  </div>
+
+  <!-- Crime -->
+  <div class="section-header" id="crime">
+    <h2 class="section-title">Crime &amp; Justice</h2>
+    <span class="section-meta">ONS / Home Office</span>
+    <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice" class="section-source-link">All crime metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card neutral">
+      <div class="metric-label">Crime incidents per year</div>
+      <div class="metric-value">8.9<span class="unit">m incidents/yr</span></div>
+      <div class="metric-period">Year to June 2023</div>
+      <div class="metric-note">CSEW estimate. Excludes fraud and computer misuse. Long-run trend is downward from 1990s peak.</div>
+      <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card bad">
+      <div class="metric-label">Crimes resulting in a charge</div>
+      <div class="metric-value">5.6<span class="unit">%</span></div>
+      <div class="metric-period">Year to March 2023</div>
+      <div class="metric-note">Less than 6 in every 100 crimes recorded by police result in a suspect being charged. Rarely cited in political debate.</div>
+      <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice" class="metric-source-link" target="_blank">→ Source: Home Office</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Crown Court case backlog</div>
+      <div class="metric-value">64,000<span class="unit">cases</span></div>
+      <div class="metric-period">Q3 2023</div>
+      <div class="metric-note">Cases waiting to be heard. Some defendants wait years for trial. Pre-pandemic level was ~37,000.</div>
+      <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice" class="metric-source-link" target="_blank">→ Source: Ministry of Justice</a>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section-header" id="education">
+    <h2 class="section-title">Education</h2>
+    <span class="section-meta">DfE / OECD</span>
+    <a href="https://www.gov.uk/government/collections/statistics-gcses-key-stage-4" class="section-source-link">All education metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card neutral">
+      <div class="metric-label">GCSE grade 4+ in English &amp; Maths</div>
+      <div class="metric-value">64.9<span class="unit">%</span></div>
+      <div class="metric-period">2023</div>
+      <div class="metric-note">Grade 4 is a 'standard pass'. Required for most further education and many jobs.</div>
+      <a href="https://www.gov.uk/government/collections/statistics-gcses-key-stage-4" class="metric-source-link" target="_blank">→ Source: DfE</a>
+    </div>
+    <div class="metric-card good">
+      <div class="metric-label">PISA maths ranking</div>
+      <div class="metric-value">11<span class="unit">out of 81</span></div>
+      <div class="metric-period">2022</div>
+      <div class="metric-note">UK ranked 11th globally for maths in the OECD PISA 2022 assessment. Singapore ranked 1st.</div>
+      <a href="https://www.gov.uk/government/collections/statistics-gcses-key-stage-4" class="metric-source-link" target="_blank">→ Source: OECD PISA</a>
+    </div>
+    <div class="metric-card good">
+      <div class="metric-label">Schools rated Good or Outstanding</div>
+      <div class="metric-value">88<span class="unit">%</span></div>
+      <div class="metric-period">2023</div>
+      <div class="metric-note">Percentage of state-funded schools in England rated Good or Outstanding by Ofsted.</div>
+      <a href="https://www.gov.uk/government/collections/statistics-gcses-key-stage-4" class="metric-source-link" target="_blank">→ Source: Ofsted</a>
+    </div>
+  </div>
+
+  <!-- Jobs & Economy -->
+  <div class="section-header" id="economy">
+    <h2 class="section-title">Jobs &amp; Economy</h2>
+    <span class="section-meta">ONS Labour Force Survey</span>
+    <a href="https://www.ons.gov.uk/employmentandlabourmarket" class="section-source-link">All economy metrics →</a>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card neutral">
+      <div class="metric-label">Unemployment rate</div>
+      <div class="metric-value">4.2<span class="unit">%</span></div>
+      <div class="metric-period">Oct–Dec 2023</div>
+      <div class="metric-note">ILO definition. Applies to people aged 16–64.</div>
+      <a href="https://www.ons.gov.uk/employmentandlabourmarket" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Economic inactivity rate</div>
+      <div class="metric-value">21.9<span class="unit">%</span></div>
+      <div class="metric-period">Oct–Dec 2023</div>
+      <div class="metric-note">People not working and not looking for work. Rarely discussed but has risen significantly since pandemic — 9 million people.</div>
+      <a href="https://www.ons.gov.uk/employmentandlabourmarket" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card good">
+      <div class="metric-label">Real wages growth (year on year)</div>
+      <div class="metric-value">1.4<span class="unit">%</span></div>
+      <div class="metric-period">November 2023</div>
+      <div class="metric-note">Wages adjusted for inflation. Positive for first time in two years, but real wages remain below 2008 peak.</div>
+      <a href="https://www.ons.gov.uk/employmentandlabourmarket" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+    <div class="metric-card neutral">
+      <div class="metric-label">Children in relative poverty</div>
+      <div class="metric-value">29<span class="unit">%</span></div>
+      <div class="metric-period">2022/23</div>
+      <div class="metric-note">Relative poverty = household income below 60% of median. After housing costs. Around 4.3 million children.</div>
+      <a href="https://www.ons.gov.uk/employmentandlabourmarket" class="metric-source-link" target="_blank">→ Source: ONS</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-mission">
+      <p>Every number on this site comes directly from an official UK government or independent statistical body. Source links are provided for every metric. The code and data are <a href="https://github.com/your-username/uk-public-numbers" target="_blank" rel="noopener">publicly available on GitHub</a>.</p>
+    </div>
+    <div class="footer-sources">Sources: ONS · NHS England · Home Office · DfE · OBR</div>
+  </div>
+</footer>
+
+</body>
+</html>

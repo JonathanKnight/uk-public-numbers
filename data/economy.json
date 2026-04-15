@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "source": "Office for National Statistics / Office for Budget Responsibility",
+    "source_url": "https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending",
+    "last_updated": "2024-01-01",
+    "methodology": "Public sector finances data from ONS. Debt as % GDP uses calendar year GDP estimates. Debt interest from OBR Economic and Fiscal Outlook."
+  },
+  "national_debt_pct_gdp": {
+    "label": "National debt",
+    "value": 97.7,
+    "unit": "% of GDP",
+    "direction": "lower_is_better",
+    "period": "November 2023",
+    "note": "Highest sustained level since early 1960s. Excludes Bank of England."
+  },
+  "annual_borrowing": {
+    "label": "Annual borrowing (deficit)",
+    "value": 123900000000,
+    "unit": "£",
+    "direction": "lower_is_better",
+    "period": "2023/24 forecast",
+    "note": "The amount the government borrows each year because spending exceeds tax revenues."
+  },
+  "debt_interest": {
+    "label": "Debt interest payments",
+    "value": 110000000000,
+    "unit": "£",
+    "direction": "lower_is_better",
+    "period": "2023/24 forecast",
+    "note": "More than the entire schools budget. Driven by high inflation increasing index-linked gilt costs."
+  },
+  "total_spending": {
+    "label": "Total government spending",
+    "value": 1189000000000,
+    "unit": "£",
+    "direction": "neutral",
+    "period": "2023/24 forecast",
+    "note": "Total Managed Expenditure. Includes all day-to-day and capital spending."
+  }
+}

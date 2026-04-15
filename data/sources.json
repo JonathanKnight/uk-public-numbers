@@ -1,0 +1,47 @@
+{
+  "_readme": "This file documents the source, methodology, and update schedule for every metric on this site. It is machine-readable and human-readable by design.",
+  "last_updated": "2024-01-01",
+  "sources": {
+    "nhs": {
+      "name": "NHS England Statistical Release",
+      "url": "https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/",
+      "publisher": "NHS England",
+      "update_frequency": "Monthly",
+      "typical_publication_day": "Second Thursday of each month",
+      "data_file": "data/nhs.json",
+      "fetch_script": "scripts/fetch-nhs.js"
+    },
+    "economy": {
+      "name": "ONS Public Sector Finances / OBR Economic and Fiscal Outlook",
+      "url": "https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending",
+      "publisher": "Office for National Statistics / Office for Budget Responsibility",
+      "update_frequency": "Monthly (ONS) / Twice yearly (OBR)",
+      "data_file": "data/economy.json",
+      "fetch_script": "scripts/fetch-ons.js"
+    },
+    "crime": {
+      "name": "Crime Survey for England and Wales",
+      "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice",
+      "publisher": "Office for National Statistics",
+      "update_frequency": "Quarterly",
+      "data_file": "data/crime.json",
+      "fetch_script": "scripts/fetch-ons.js"
+    },
+    "education": {
+      "name": "DfE National Statistics / OECD PISA",
+      "url": "https://www.gov.uk/government/collections/statistics-gcses-key-stage-4",
+      "publisher": "Department for Education / OECD",
+      "update_frequency": "Annual (GCSE) / Every 3 years (PISA)",
+      "data_file": "data/education.json",
+      "fetch_script": "scripts/fetch-dfe.js"
+    },
+    "jobs": {
+      "name": "Labour Force Survey",
+      "url": "https://www.ons.gov.uk/employmentandlabourmarket",
+      "publisher": "Office for National Statistics",
+      "update_frequency": "Monthly",
+      "data_file": "data/jobs.json",
+      "fetch_script": "scripts/fetch-ons.js"
+    }
+  }
+}

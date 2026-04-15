@@ -1,0 +1,17 @@
+{
+  "name": "uk-public-numbers",
+  "version": "0.1.0",
+  "description": "UK government statistics — transparent, sourced, spin-resistant",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch-all": "node scripts/fetch-ons.js && node scripts/fetch-nhs.js",
+    "validate": "node scripts/validate.js"
+  },
+  "dependencies": {
+    "astro": "^4.0.0"
+  },
+  "devDependencies": {}
+}

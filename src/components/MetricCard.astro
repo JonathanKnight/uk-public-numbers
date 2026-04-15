@@ -1,0 +1,68 @@
+---
+const { metric, sourceUrl, sourceLabel } = Astro.props;
+
+function formatValue(value, unit) {
+  if (unit === '£') {
+    if (value >= 1_000_000_000_000) return `£${(value / 1_000_000_000_000).toFixed(1)}tn`;
+    if (value >= 1_000_000_000) return `£${(value / 1_000_000_000).toFixed(0)}bn`;
+    if (value >= 1_000_000) return `£${(value / 1_000_000).toFixed(0)}m`;
+    return `£${value.toLocaleString()}`;
+  }
+  if (unit === 'people') {
+    if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}m`;
+    if (value >= 1_000) return `${(value / 1_000).toFixed(0)}k`;
+    return value.toLocaleString();
+  }
+  if (unit === 'incidents') {
+    if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}m`;
+    return value.toLocaleString();
+  }
+  if (unit === 'cases') return value.toLocaleString();
+  return value.toLocaleString();
+}
+
+function getUnit(unit) {
+  if (unit === '£') return '';
+  if (unit === 'people') return 'people';
+  if (unit === 'incidents') return 'incidents/yr';
+  if (unit === 'cases') return 'cases';
+  return unit;
+}
+
+function getStatus(metric) {
+  if (metric.direction === 'neutral') return 'neutral';
+  const hasTarget = metric.target !== undefined;
+  if (metric.direction === 'higher_is_better') {
+    if (hasTarget) return metric.value >= metric.target ? 'good' : 'bad';
+    return metric.value > 0 ? 'good' : 'bad';
+  }
+  if (metric.direction === 'lower_is_better') {
+    return 'neutral';
+  }
+  return 'neutral';
+}
+
+const status = getStatus(metric);
+const displayValue = formatValue(metric.value, metric.unit);
+const displayUnit = getUnit(metric.unit);
+---
+
+<div class={`metric-card ${status}`}>
+  <div class="metric-label">{metric.label}</div>
+  <div class="metric-value">
+    {displayValue}
+    {displayUnit && <span class="unit">{displayUnit}</span>}
+  </div>
+  {metric.target_label && (
+    <div class={`metric-target ${status === 'good' ? 'on-track' : ''}`}>
+      {metric.target_label}
+    </div>
+  )}
+  <div class="metric-period">{metric.period}</div>
+  {metric.note && <div class="metric-note">{metric.note}</div>}
+  {sourceUrl && (
+    <a href={sourceUrl} target="_blank" rel="noopener" class="metric-source-link">
+      → Source: {sourceLabel || 'Official data'}
+    </a>
+  )}
+</div>
