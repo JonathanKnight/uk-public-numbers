@@ -23,7 +23,7 @@ const ONS_API = 'https://api.ons.gov.uk/v1';
 // multiplier: optional scale factor applied to the raw API value before storing
 const ONS_URIS = {
   'pusf/HF6X': { uri: '/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/hf6x/pusf' },
-  'pusf/J5II':  { uri: '/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/j5ii/pusf', multiplier: 1_000_000 }, // API returns £m
+  'pusf/J5II':  { uri: '/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/j5ii/pusf', periodType: 'years', multiplier: -1_000_000 }, // API returns £m as negative; negate to positive borrowing figure
   'lms/MGSX':  { uri: '/employmentandlabourmarket/peoplenotinwork/unemployment/timeseries/mgsx/lms' },
   'lms/LF2S':  { uri: '/employmentandlabourmarket/peoplenotinwork/economicinactivity/timeseries/lf2s/lms' },
 };
@@ -50,15 +50,16 @@ async function fetchONSTimeseries(datasetId, timeseriesId) {
 
   const json = await res.json();
 
-  // ONS returns months array sorted ascending — take the last (most recent)
-  const months = json.months || [];
-  if (months.length === 0) throw new Error(`No monthly data for ${timeseriesId}`);
+  // ONS returns period arrays sorted ascending — take the last (most recent)
+  const periodType = entry.periodType || 'months';
+  const periods = json[periodType] || [];
+  if (periods.length === 0) throw new Error(`No ${periodType} data for ${timeseriesId}`);
 
-  const latest = months[months.length - 1];
+  const latest = periods[periods.length - 1];
   const raw = parseFloat(latest.value);
   return {
     value: entry.multiplier ? raw * entry.multiplier : raw,
-    period: latest.label, // e.g. "2026 FEB" or "2025 NOV-JAN" for rolling averages
+    period: latest.label,
   };
 }
 

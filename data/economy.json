@@ -15,10 +15,10 @@
   },
   "annual_borrowing": {
     "label": "Annual borrowing (deficit)",
-    "value": -14329000000,
+    "value": 155024000000,
     "unit": "£",
     "direction": "lower_is_better",
-    "period": "2026 FEB",
+    "period": "2025",
     "note": "The amount the government borrows each year because spending exceeds tax revenues."
   },
   "debt_interest": {
