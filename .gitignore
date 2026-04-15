@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# Package manager lockfiles (pick one to keep — remove this line if you commit package-lock.json)
+# package-lock.json
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Preview files
+*.html
+!public/**/*.html
