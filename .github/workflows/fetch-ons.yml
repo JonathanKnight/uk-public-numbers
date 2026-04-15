@@ -1,0 +1,36 @@
+name: Fetch ONS Data
+
+on:
+  # Run every Tuesday at 09:00 UTC (ONS often publishes Monday/Tuesday)
+  schedule:
+    - cron: '0 9 * * 2'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch ONS data
+        run: node scripts/fetch-ons.js
+
+      - name: Validate data
+        run: node scripts/validate.js
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'data: update ONS figures [automated]'
+          file_pattern: 'data/economy.json data/crime.json data/jobs.json'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
