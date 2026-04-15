@@ -2,23 +2,23 @@
   "_meta": {
     "source": "Office for National Statistics",
     "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes",
-    "last_updated": "2024-01-01",
+    "last_updated": "2026-04-15",
     "methodology": "Labour Force Survey (LFS). ILO unemployment definition: people without a job who have been actively seeking work in the past four weeks and are available to start in the next two weeks. Economic inactivity: people not in employment and not seeking or available for work."
   },
   "unemployment_rate": {
     "label": "Unemployment rate",
-    "value": 4.2,
+    "value": 5.2,
     "unit": "%",
     "direction": "lower_is_better",
-    "period": "October–December 2023",
+    "period": "2025 NOV-JAN",
     "note": "ILO definition. Applies to people aged 16-64."
   },
   "economic_inactivity": {
     "label": "Economic inactivity rate",
-    "value": 21.9,
+    "value": 20.7,
     "unit": "%",
     "direction": "lower_is_better",
-    "period": "October–December 2023",
+    "period": "2025 NOV-JAN",
     "note": "People not working and not looking for work. Includes students, carers, long-term sick. Rarely discussed but has risen significantly since pandemic — 9 million people."
   },
   "real_wages_growth": {

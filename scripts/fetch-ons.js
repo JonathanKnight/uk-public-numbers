@@ -18,14 +18,28 @@ const dataDir = join(__dirname, '..', 'data');
 // ONS API base URL
 const ONS_API = 'https://api.ons.gov.uk/v1';
 
+// ONS website URI paths for each timeseries (dataset/series → full URI)
+// The ONS API uses GET /data?uri=<path> rather than path segments
+// multiplier: optional scale factor applied to the raw API value before storing
+const ONS_URIS = {
+  'pusf/HF6X': { uri: '/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/hf6x/pusf' },
+  'pusf/J5II':  { uri: '/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/j5ii/pusf', multiplier: 1_000_000 }, // API returns £m
+  'lms/MGSX':  { uri: '/employmentandlabourmarket/peoplenotinwork/unemployment/timeseries/mgsx/lms' },
+  'lms/LF2S':  { uri: '/employmentandlabourmarket/peoplenotinwork/economicinactivity/timeseries/lf2s/lms' },
+};
+
 /**
  * Fetch a single timeseries value from the ONS API.
- * @param {string} datasetId - ONS dataset ID (e.g. 'cpih01')
- * @param {string} timeseriesId - ONS timeseries ID (e.g. 'l55o')
+ * @param {string} datasetId - ONS dataset ID (e.g. 'pusf')
+ * @param {string} timeseriesId - ONS timeseries ID (e.g. 'HF6X')
  * @returns {Promise<{value: number, period: string}>}
  */
 async function fetchONSTimeseries(datasetId, timeseriesId) {
-  const url = `${ONS_API}/dataset/${datasetId}/timeseries/${timeseriesId}/data`;
+  const entry = ONS_URIS[`${datasetId}/${timeseriesId}`];
+  if (!entry) throw new Error(`No ONS URI mapping for ${datasetId}/${timeseriesId}`);
+
+  const url = `${ONS_API}/data?uri=${entry.uri}`;
+  console.log(`${url}\n`);
   const res = await fetch(url, {
     headers: { 'Accept': 'application/json' }
   });
@@ -41,9 +55,10 @@ async function fetchONSTimeseries(datasetId, timeseriesId) {
   if (months.length === 0) throw new Error(`No monthly data for ${timeseriesId}`);
 
   const latest = months[months.length - 1];
+  const raw = parseFloat(latest.value);
   return {
-    value: parseFloat(latest.value),
-    period: latest.label, // e.g. "2023 DEC"
+    value: entry.multiplier ? raw * entry.multiplier : raw,
+    period: latest.label, // e.g. "2026 FEB" or "2025 NOV-JAN" for rolling averages
   };
 }
 
