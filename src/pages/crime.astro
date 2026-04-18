@@ -8,6 +8,7 @@ import PrisonDemographicsChart from '../components/PrisonDemographicsChart.jsx';
 import ReoffendingChart from '../components/ReoffendingChart.jsx';
 import CrimesPerOfficerChart from '../components/CrimesPerOfficerChart.jsx';
 import CrimeConcentrationChart from '../components/CrimeConcentrationChart.jsx';
+import CJSCostsChart from '../components/CJSCostsChart.jsx';
 import crime from '../../data/crime-trends.json';
 
 const csew    = crime._csew_annual.series;
@@ -21,6 +22,7 @@ const latestCsew   = csew[csew.length - 1];
 const latestPolice = police[police.length - 1];
 const latestPrison = prison.total_series[prison.total_series.length - 1];
 const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
+const cjsCosts     = crime._cjs_costs;
 ---
 
 <Base title="Crime & Policing — UK Public Numbers">
@@ -50,6 +52,10 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
       <span class="stat-value">{latestReoff.rate}%</span>
       <span class="stat-label">Reoffending rate {latestReoff.period}</span>
     </div>
+    <div class="stat-item">
+      <span class="stat-value">£{cjsCosts.breakdown_2023_24.reduce((s,d) => s + d.bn, 0).toFixed(0)}bn</span>
+      <span class="stat-label">CJS cost 2023–24</span>
+    </div>
   </div>
 
   <!-- CSEW crime trend + crimes per officer -->
@@ -77,6 +83,20 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
     <ProsecutionsRatioCharts prosecutionSeries={prosec} policeSeries={police} csewSeries={csew} client:load />
   </div>
 
+  <!-- CJS costs -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Cost of the criminal justice system</h2>
+    <span class="section-meta">Police · courts · prisons · legal aid · CPS · England &amp; Wales · 2023–24 prices (inflation-adjusted)</span>
+  </div>
+  <div class="chart-panel">
+    <CJSCostsChart
+      breakdown={cjsCosts.breakdown_2023_24}
+      mojTrend={cjsCosts.moj_trend}
+      costPerCrime={cjsCosts.cost_per_crime_2023_24}
+      client:load
+    />
+  </div>
+
   <!-- Crime concentration -->
   <div class="section-header chart-section-header">
     <h2 class="section-title">Who commits the crime?</h2>
@@ -85,7 +105,7 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
   <div class="chart-panel">
     <CrimeConcentrationChart
       byPreviousOffences={reoff.by_previous_offences}
-      reoffenderCount={reoff.rate_series.find(d => d.period === reoff.by_previous_offences.period)?.reoffenders}
+      prosecutedTotal={prosec[prosec.length - 1]?.prosecuted}
       client:load
     />
   </div>
@@ -151,6 +171,13 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
       a disproportionate share of all reoffences.
     </p>
     <p>
+      <strong>Criminal justice system costs</strong> cover the Ministry of Justice (prisons, probation, courts, legal aid)
+      and the Home Office police funding settlement for England and Wales, plus the Crown Prosecution Service. Figures are
+      nominal (not adjusted for inflation). The MoJ budget peaked at £9.5bn in 2007–08, was cut by 23% in real terms to
+      £7.3bn by 2016–17 during austerity, and has since recovered to £11.9bn in 2023–24 — still 14% below the 2007–08
+      peak in real terms (IFS, Feb 2025).
+    </p>
+    <p>
       Sources:{' '}
       <a href={crime._csew_annual.source_url} target="_blank" rel="noopener">ONS Crime Survey</a> ·{' '}
       <a href={crime._police_officers.source_url} target="_blank" rel="noopener">Home Office Police Workforce</a> ·{' '}
@@ -164,7 +191,7 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
 <style>
   .stat-strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     margin: 1.5rem 0 2rem;
     padding: 1.25rem 1.5rem;
@@ -274,7 +301,13 @@ const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
+    .stat-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
     .stat-strip {
       grid-template-columns: 1fr 1fr;
     }

@@ -52,14 +52,16 @@ function RatioChart({ data, dataKey, color, TooltipComponent, title, tickFormat 
       }}>
         {title}
       </div>
-      <ResponsiveContainer width="100%" height={260}>
-        <LineChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 0 }}>
+      <ResponsiveContainer width="100%" height={280}>
+        <LineChart data={data} margin={{ top: 8, right: 16, bottom: 20, left: 0 }}>
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint, angle: -45, textAnchor: 'end', dy: 4 }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
+            interval={4}
+            height={45}
           />
           <YAxis
             tickFormatter={tickFormat ?? (v => v.toFixed(2))}
@@ -142,7 +144,7 @@ export default function ProsecutionsRatioCharts({ prosecutionSeries, policeSerie
         />
       </div>
       <p style={{ fontFamily: COLORS.mono, fontSize: '0.9rem', color: COLORS.inkFaint, letterSpacing: '0.03em', marginTop: '0.75rem' }}>
-        Left: MoJ prosecutions ÷ CSEW survey incidents (excl. fraud/cyber) · Right: MoJ convictions ÷ Home Office officer headcount (31 March) · England &amp; Wales
+        Source: MoJ Criminal Justice Statistics (Table A1.1, 1993–2022) · CSEW = Crime Survey for England and Wales · Police headcount 31 March · England &amp; Wales
       </p>
     </div>
   );

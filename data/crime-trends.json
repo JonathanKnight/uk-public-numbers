@@ -80,21 +80,39 @@
   },
   "_prosecutions": {
     "label": "Prosecutions and convictions",
-    "source_url": "https://www.gov.uk/government/collections/criminal-justice-statistics-quarterly",
-    "note": "England & Wales. All offences prosecuted at magistrates' and Crown Court. Conviction rate = convicted ÷ prosecuted. Source: MoJ Criminal Justice Statistics.",
+    "source_url": "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2024",
+    "note": "England & Wales. Defendants proceeded against at magistrates' and Crown Court, all offences. Conviction rate = convicted ÷ proceeded against. Source: MoJ Criminal Justice Statistics, Overview Table A1.1 (1993–2022). High conviction rates in recent years partly reflect fixed-penalty notices removing minor motoring offences from court.",
     "series": [
-      { "period": "2013", "prosecuted": 1609071, "convicted": 1311527, "conviction_rate": 81.5 },
-      { "period": "2014", "prosecuted": 1582007, "convicted": 1292396, "conviction_rate": 81.7 },
-      { "period": "2015", "prosecuted": 1530011, "convicted": 1248215, "conviction_rate": 81.6 },
-      { "period": "2016", "prosecuted": 1508659, "convicted": 1231177, "conviction_rate": 81.6 },
-      { "period": "2017", "prosecuted": 1505081, "convicted": 1226765, "conviction_rate": 81.5 },
-      { "period": "2018", "prosecuted": 1428534, "convicted": 1169804, "conviction_rate": 81.9 },
-      { "period": "2019", "prosecuted": 1385975, "convicted": 1129965, "conviction_rate": 81.5 },
-      { "period": "2020", "prosecuted": 1025764, "convicted":  855745, "conviction_rate": 83.4 },
-      { "period": "2021", "prosecuted": 1229804, "convicted": 1017498, "conviction_rate": 82.7 },
-      { "period": "2022", "prosecuted": 1301862, "convicted": 1085893, "conviction_rate": 83.4 },
-      { "period": "2023", "prosecuted": 1349178, "convicted": 1125036, "conviction_rate": 83.4 },
-      { "period": "2024", "prosecuted": 1370000, "convicted": 1141000, "conviction_rate": 83.3 }
+      { "period": "1993", "prosecuted": 1956300, "convicted": 1425300, "conviction_rate": 72.9 },
+      { "period": "1994", "prosecuted": 1947200, "convicted": 1407600, "conviction_rate": 72.3 },
+      { "period": "1995", "prosecuted": 1836300, "convicted": 1354600, "conviction_rate": 73.8 },
+      { "period": "1996", "prosecuted": 1919500, "convicted": 1438000, "conviction_rate": 74.9 },
+      { "period": "1997", "prosecuted": 1855300, "convicted": 1385800, "conviction_rate": 74.7 },
+      { "period": "1998", "prosecuted": 1951900, "convicted": 1469700, "conviction_rate": 75.3 },
+      { "period": "1999", "prosecuted": 1881800, "convicted": 1408500, "conviction_rate": 74.8 },
+      { "period": "2000", "prosecuted": 1904700, "convicted": 1423700, "conviction_rate": 74.7 },
+      { "period": "2001", "prosecuted": 1837700, "convicted": 1349700, "conviction_rate": 73.4 },
+      { "period": "2002", "prosecuted": 1924800, "convicted": 1421300, "conviction_rate": 73.8 },
+      { "period": "2003", "prosecuted": 2000800, "convicted": 1491200, "conviction_rate": 74.5 },
+      { "period": "2004", "prosecuted": 2022600, "convicted": 1548500, "conviction_rate": 76.6 },
+      { "period": "2005", "prosecuted": 1895002, "convicted": 1484424, "conviction_rate": 78.3 },
+      { "period": "2006", "prosecuted": 1677832, "convicted": 1333657, "conviction_rate": 79.5 },
+      { "period": "2007", "prosecuted": 1638465, "convicted": 1333791, "conviction_rate": 81.4 },
+      { "period": "2008", "prosecuted": 1607154, "convicted": 1334270, "conviction_rate": 83.0 },
+      { "period": "2009", "prosecuted": 1692421, "convicted": 1406433, "conviction_rate": 83.1 },
+      { "period": "2010", "prosecuted": 1651089, "convicted": 1365373, "conviction_rate": 82.7 },
+      { "period": "2011", "prosecuted": 1577957, "convicted": 1311513, "conviction_rate": 83.1 },
+      { "period": "2012", "prosecuted": 1482940, "convicted": 1229901, "conviction_rate": 82.9 },
+      { "period": "2013", "prosecuted": 1439731, "convicted": 1177830, "conviction_rate": 81.8 },
+      { "period": "2014", "prosecuted": 1466374, "convicted": 1216204, "conviction_rate": 82.9 },
+      { "period": "2015", "prosecuted": 1491033, "convicted": 1247991, "conviction_rate": 83.7 },
+      { "period": "2016", "prosecuted": 1458036, "convicted": 1241980, "conviction_rate": 85.2 },
+      { "period": "2017", "prosecuted": 1368221, "convicted": 1213135, "conviction_rate": 88.7 },
+      { "period": "2018", "prosecuted": 1356130, "convicted": 1205101, "conviction_rate": 88.9 },
+      { "period": "2019", "prosecuted": 1350453, "convicted": 1195052, "conviction_rate": 88.5 },
+      { "period": "2020", "prosecuted":  935715, "convicted":  820664, "conviction_rate": 87.7 },
+      { "period": "2021", "prosecuted": 1067844, "convicted":  951169, "conviction_rate": 89.1 },
+      { "period": "2022", "prosecuted": 1171429, "convicted": 1046373, "conviction_rate": 89.3 }
     ]
   },
   "_prison_population": {
@@ -153,9 +171,10 @@
   "_sentencing": {
     "label": "Average custodial sentence length (months)",
     "source_url": "https://www.gov.uk/government/collections/criminal-justice-statistics-quarterly",
-    "note": "Average custodial sentence length in months for adults, England & Wales, 2024. Excludes life sentences and indeterminate sentences. Source: MoJ Criminal Justice Statistics.",
+    "note": "Average custodial sentence length in months for adults, England & Wales, 2024. Excludes life sentences and indeterminate sentences — murder carries a mandatory life sentence and does not appear. Manslaughter can receive a determinate sentence and is shown separately. Source: MoJ Criminal Justice Statistics.",
     "by_offence": [
       { "offence": "Sexual offences",          "months": 86.6, "period": "2024" },
+      { "offence": "Manslaughter / homicide",  "months": 65.0, "period": "2024" },
       { "offence": "Robbery",                  "months": 46.3, "period": "2024" },
       { "offence": "Drug offences",            "months": 26.6, "period": "2024" },
       { "offence": "Violence against person",  "months": 21.7, "period": "2024" },
@@ -206,5 +225,31 @@
         { "band": "11+ previous", "rate": 47.8, "pct_of_offenders": 17, "pct_of_reoffences": 37 }
       ]
     }
+  },
+  "_cjs_costs": {
+    "label": "Criminal justice system costs, England and Wales",
+    "source_url": "https://www.gov.uk/government/statistics/public-expenditure-statistical-analyses-2024",
+    "note": "Nominal (cash) spending. MoJ = Ministry of Justice total DEL (Resource + Capital). Police = Home Office total police system funding for England and Wales (government grants + council tax precept + counter-terrorism). CPS = Crown Prosecution Service (Law Officers' Departments). Figures for selected years only; gaps represent years not separately verified. Sources: PESA 2024 (HM Treasury); Home Office Police Funding for England and Wales 2015–2026; IFS 'Justice spending in England and Wales' (Feb 2025).",
+    "real_prices_note": "All figures in 2023-24 prices (GDP deflator, HM Treasury PESA 2024). Nominal figures converted using implicit price deflators derived from PESA Tables 1.3 and 1.4.",
+    "cost_per_crime_2023_24": 3671,
+    "moj_trend": [
+      { "period": "2002-03", "moj_real": 12.1 },
+      { "period": "2007-08", "moj_real": 14.1 },
+      { "period": "2016-17", "moj_real":  9.3 },
+      { "period": "2019-20", "moj_real":  9.9 },
+      { "period": "2020-21", "moj_real": 10.8 },
+      { "period": "2021-22", "moj_real": 11.4 },
+      { "period": "2022-23", "moj_real": 11.4 },
+      { "period": "2023-24", "moj_real": 11.9 },
+      { "period": "2025-26", "moj_real": 13.2 }
+    ],
+    "breakdown_2023_24": [
+      { "component": "Police (E&W)",           "bn": 17.2, "note": "Home Office total police system funding" },
+      { "component": "Prisons & probation",    "bn": 5.3,  "note": "HMPPS resource budget" },
+      { "component": "Courts & tribunals",     "bn": 2.3,  "note": "HMCTS resource budget" },
+      { "component": "Legal Aid",              "bn": 2.2,  "note": "Legal Aid Agency resource budget" },
+      { "component": "Crown Prosecution",      "bn": 0.9,  "note": "CPS and Law Officers' Departments" },
+      { "component": "MoJ other",              "bn": 1.1,  "note": "Policy, judiciary, CICA and other MoJ bodies" }
+    ]
   }
 }

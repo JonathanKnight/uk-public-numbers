@@ -67,15 +67,16 @@ export default function CSEWTrendChart({ csewSeries, policeSeries }) {
 
   return (
     <div style={{ width: '100%' }}>
-      <ResponsiveContainer width="100%" height={320}>
-        <ComposedChart data={data} margin={{ top: 8, right: hasPolice ? 52 : 16, bottom: 8, left: 0 }}>
+      <ResponsiveContainer width="100%" height={340}>
+        <ComposedChart data={data} margin={{ top: 8, right: hasPolice ? 52 : 16, bottom: 24, left: 0 }}>
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint, angle: -45, textAnchor: 'end', dy: 4 }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
-            interval={3}
+            interval={4}
+            height={55}
           />
           <YAxis
             yAxisId="csew"

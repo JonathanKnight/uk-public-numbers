@@ -14,19 +14,17 @@ const COLORS = {
   mono:       '"JetBrains Mono", monospace',
 };
 
-// Colour scale by sentence length — longer = darker red
-function barColor(months) {
-  if (months >= 60) return '#c0392b';
-  if (months >= 30) return '#d35400';
-  if (months >= 18) return '#b8860b';
-  if (months >= 12) return '#1a4a7a';
+function barColor(years) {
+  if (years >= 5)  return '#c0392b';
+  if (years >= 2.5) return '#d35400';
+  if (years >= 1.5) return '#b8860b';
+  if (years >= 1)  return '#1a4a7a';
   return '#5c7a9c';
 }
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
-  const months = payload[0]?.value;
-  const years = months != null ? (months / 12).toFixed(1) : null;
+  const years = payload[0]?.value;
   return (
     <div style={{
       background: COLORS.paper,
@@ -38,8 +36,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.3rem' }}>{label}</div>
-      <div>{months} months</div>
-      <div style={{ color: COLORS.inkFaint, fontSize: "0.9rem" }}>{years} years</div>
+      <div>{years?.toFixed(1)} years</div>
     </div>
   );
 };
@@ -51,8 +48,9 @@ export default function SentencingChart({ byOffence }) {
     </p>
   );
 
-  // Sort longest first
-  const sorted = [...byOffence].sort((a, b) => b.months - a.months);
+  const sorted = [...byOffence]
+    .map(d => ({ ...d, years: parseFloat((d.months / 12).toFixed(1)) }))
+    .sort((a, b) => b.years - a.years);
 
   return (
     <div style={{ width: '100%' }}>
@@ -65,7 +63,7 @@ export default function SentencingChart({ byOffence }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} horizontal={false} />
           <XAxis
             type="number"
-            tickFormatter={v => `${v}mo`}
+            tickFormatter={v => `${v}yr`}
             tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
@@ -76,18 +74,18 @@ export default function SentencingChart({ byOffence }) {
             tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkMuted }}
             tickLine={false}
             axisLine={false}
-            width={170}
+            width={220}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: COLORS.paperRule, opacity: 0.4 }} />
-          <Bar dataKey="months" name="Avg sentence (months)" maxBarSize={18} radius={[0, 2, 2, 0]}>
+          <Bar dataKey="years" name="Avg sentence (years)" maxBarSize={18} radius={[0, 2, 2, 0]}>
             {sorted.map(d => (
-              <Cell key={d.offence} fill={barColor(d.months)} fillOpacity={0.8} />
+              <Cell key={d.offence} fill={barColor(d.years)} fillOpacity={0.8} />
             ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
       <p style={{ fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint, letterSpacing: '0.03em', marginTop: '0.25rem' }}>
-        Source: MoJ Criminal Justice Statistics 2024 · Average custodial sentence length, adults · Excludes life/indeterminate sentences
+        Source: MoJ Criminal Justice Statistics 2024 · Average custodial sentence length, adults · Murder (mandatory life) excluded · Manslaughter shown separately
       </p>
     </div>
   );
