@@ -22,3 +22,5 @@ Thumbs.db
 # Preview files
 *.html
 !public/**/*.html
+
+nhs_dashboard.jsx

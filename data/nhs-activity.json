@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "source": "NHS Digital Hospital Episode Statistics (HES)",
+    "source_url": "https://digital.nhs.uk/data-and-information/publications/statistical/hospital-admitted-patient-care-activity",
+    "last_updated": "2026-04-18",
+    "methodology": "Finished Consultant Episodes (FCEs) by NHS financial year (Apr–Mar) and treatment specialty. FCEs measure completed spells of care under a consultant — the standard NHS measure of hospital activity. Specialty groups aggregate TRETSPEF codes: Surgery (100–179), Medicine (300–399), Emergency (180–191), Neurology/Neurosurgery (400–415), Obs & Gynae (130–133, 500–519), Paediatrics (420–424, 520–560), Mental Health (700–740), Oncology (370–371, 800–825), Other (all remaining)."
+  },
+  "_hes_annual": {
+    "label": "Hospital activity (FCEs)",
+    "source_url": "https://digital.nhs.uk/data-and-information/publications/statistical/hospital-admitted-patient-care-activity",
+    "note": "Finished Consultant Episodes per NHS financial year by broad specialty group. Run fetch-hospital-activity.js to populate.",
+    "series": [
+      {
+        "period": "2022/23",
+        "total_fce": 0,
+        "fce_with_procedure": 0,
+        "emergency_fce": 0,
+        "day_case_fce": 0,
+        "elective_fce": 0,
+        "by_group": {
+          "surgery": 0,
+          "medicine": 0,
+          "emergency": 0,
+          "neurology": 0,
+          "obs_gynae": 0,
+          "paediatrics": 0,
+          "mental_health": 0,
+          "oncology": 0,
+          "other": 0
+        }
+      },
+      {
+        "period": "2023/24",
+        "total_fce": 0,
+        "fce_with_procedure": 0,
+        "emergency_fce": 0,
+        "day_case_fce": 0,
+        "elective_fce": 0,
+        "by_group": {
+          "surgery": 0,
+          "medicine": 0,
+          "emergency": 0,
+          "neurology": 0,
+          "obs_gynae": 0,
+          "paediatrics": 0,
+          "mental_health": 0,
+          "oncology": 0,
+          "other": 0
+        }
+      },
+      {
+        "period": "2024/25",
+        "total_fce": 22543971,
+        "fce_with_procedure": null,
+        "emergency_fce": 6613372,
+        "day_case_fce": 8661116,
+        "elective_fce": 15930599,
+        "by_group": {
+          "surgery": 5111767,
+          "medicine": 9274991,
+          "emergency": 861277,
+          "neurology": 368118,
+          "obs_gynae": 2728519,
+          "paediatrics": 1640301,
+          "mental_health": 54744,
+          "oncology": 1125161,
+          "other": 1379093
+        }
+      }
+    ]
+  }
+}

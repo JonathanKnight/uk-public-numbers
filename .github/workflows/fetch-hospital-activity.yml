@@ -1,0 +1,39 @@
+name: Fetch Hospital Activity Data
+
+on:
+  # HES admitted patient care data is published annually in autumn.
+  # Run in October each year to capture the latest release.
+  schedule:
+    - cron: '0 10 1-7 10 5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch hospital activity data
+        run: node scripts/fetch-hospital-activity.js
+
+      - name: Validate data
+        run: node scripts/validate.js
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'data: update NHS hospital activity figures [automated]'
+          file_pattern: 'data/nhs-activity.json'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'

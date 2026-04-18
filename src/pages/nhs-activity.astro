@@ -1,0 +1,172 @@
+---
+import Base from '../layouts/Base.astro';
+import HospitalActivityChart from '../components/HospitalActivityChart.jsx';
+import SpecialtyBreakdownChart from '../components/SpecialtyBreakdownChart.jsx';
+import AdmissionTypeChart from '../components/AdmissionTypeChart.jsx';
+import activity from '../../data/nhs-activity.json';
+
+const series = activity._hes_annual.series;
+const latest = series[series.length - 1];
+---
+
+<Base title="NHS Hospital Activity — UK Public Numbers">
+  <div class="hero">
+    <div class="hero-label">NHS England · Hospital Episode Statistics · Updated annually</div>
+    <h2 class="hero-headline">NHS hospital activity</h2>
+    <p class="hero-sub">
+      Annual hospital admissions and procedures in England from 2003/04 to present.
+      A Finished Consultant Episode (FCE) measures one completed spell of care under a consultant.
+    </p>
+  </div>
+
+  {latest && (
+    <div class="stat-strip">
+      <div class="stat-item">
+        <span class="stat-value">{(latest.total_fce / 1e6).toFixed(1)}M</span>
+        <span class="stat-label">Total FCEs {latest.period}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{(latest.fce_with_procedure / 1e6).toFixed(1)}M</span>
+        <span class="stat-label">FCEs with procedure</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{(latest.emergency_fce / 1e6).toFixed(1)}M</span>
+        <span class="stat-label">Emergency admissions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{(latest.day_case_fce / 1e6).toFixed(1)}M</span>
+        <span class="stat-label">Day cases</span>
+      </div>
+    </div>
+  )}
+
+  <!-- Total activity -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Total hospital activity</h2>
+    <span class="section-meta">Finished Consultant Episodes · 2003/04–present</span>
+  </div>
+  <div class="chart-panel">
+    <HospitalActivityChart series={series} client:load />
+  </div>
+
+  <!-- Admission type breakdown -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Admissions by type</h2>
+    <span class="section-meta">Day case · Elective overnight · Emergency</span>
+  </div>
+  <div class="chart-panel">
+    <AdmissionTypeChart series={series} client:load />
+  </div>
+
+  <!-- Specialty breakdown -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Activity by specialty</h2>
+    <span class="section-meta">FCEs by broad specialty group · stacked</span>
+  </div>
+  <div class="chart-panel">
+    <SpecialtyBreakdownChart series={series} client:load />
+  </div>
+
+  <div class="methodology-note">
+    <h3>About this data</h3>
+    <p>
+      Hospital Episode Statistics (HES) are collected from all NHS trusts in England.
+      A <strong>Finished Consultant Episode</strong> (FCE) is a period of care under one consultant
+      within one stay. One hospital admission may generate multiple FCEs if care is transferred
+      between consultants. The 2020/21 drop reflects COVID-19 service disruption.
+      Data covers NHS-funded admitted patient care (inpatient and day case) but excludes
+      outpatient appointments and A&amp;E attendances.
+    </p>
+    <p>
+      Source: <a href={activity._meta.source_url} target="_blank" rel="noopener">
+        NHS Digital Hospital Admitted Patient Care Activity
+      </a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    font-family: var(--display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .chart-panel {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+    padding: 1.5rem 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-section-header {
+    margin-top: 2.5rem;
+  }
+
+  .methodology-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-left: 3px solid var(--ink-faint);
+  }
+
+  .methodology-note h3 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .stat-strip {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stat-strip {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

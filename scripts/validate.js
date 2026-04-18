@@ -122,6 +122,22 @@ try {
 
 } catch (e) { fail('jobs.json', '_load', e.message); }
 
+// ── NHS ACTIVITY ──
+console.log('\nValidating nhs-activity.json...');
+try {
+  const act = loadJSON('nhs-activity.json');
+  const hesSeries = act._hes_annual?.series ?? [];
+  pass('nhs-activity', '_hes_annual.series', `${hesSeries.length} year(s) of HES data`);
+  for (const d of hesSeries) {
+    if (d.total_fce != null && (d.total_fce < 5_000_000 || d.total_fce > 40_000_000))
+      fail('nhs-activity', `_hes_annual[${d.period}].total_fce`, `${(d.total_fce/1e6).toFixed(1)}M is implausible (5M–40M)`);
+    if (d.fce_with_procedure != null && d.fce_with_procedure > d.total_fce)
+      fail('nhs-activity', `_hes_annual[${d.period}].fce_with_procedure`, `exceeds total_fce`);
+    if (d.emergency_fce != null && d.emergency_fce > d.total_fce)
+      fail('nhs-activity', `_hes_annual[${d.period}].emergency_fce`, `exceeds total_fce`);
+  }
+} catch (e) { fail('nhs-activity.json', '_load', e.message); }
+
 // ── RESULT ──
 console.log(`\n─────────────────────────────`);
 if (errors > 0) {
