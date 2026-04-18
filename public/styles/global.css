@@ -287,28 +287,6 @@ body {
 
 .metric-source-link:hover { text-decoration: underline; }
 
-/* ── DATA FRESHNESS BANNER ── */
-.freshness-bar {
-  background: var(--paper-warm);
-  border: 1px solid var(--paper-rule);
-  border-left: 3px solid var(--accent-amber);
-  padding: 0.6rem 1rem;
-  margin-bottom: 2rem;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.freshness-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent-amber);
-  flex-shrink: 0;
-}
 
 /* ── FOOTER ── */
 .site-footer {
