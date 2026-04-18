@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.accentBlue}`,
       padding: '0.6rem 0.8rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.8rem',
+      fontSize: "0.95rem",
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.25rem' }}>{label}</div>
@@ -40,7 +40,7 @@ export default function AEAttendancesChart({ series }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 11, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
             interval={1}
@@ -51,7 +51,7 @@ export default function AEAttendancesChart({ series }) {
           <YAxis
             domain={[0, 35]}
             ticks={[0, 5, 10, 15, 20, 25, 30, 35]}
-            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             tickFormatter={v => `${v}M`}
@@ -72,7 +72,7 @@ export default function AEAttendancesChart({ series }) {
         </BarChart>
       </ResponsiveContainer>
       <p style={{
-        fontFamily: COLORS.mono, fontSize: '0.75rem', color: COLORS.inkFaint,
+        fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint,
         letterSpacing: '0.04em', marginTop: '0.25rem',
       }}>
         Source: NHS England A&amp;E Attendances and Emergency Admissions time series · Red bar = COVID-19 year

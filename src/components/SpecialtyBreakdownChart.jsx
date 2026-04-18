@@ -47,7 +47,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.inkMuted}`,
       padding: '0.6rem 0.9rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.75rem',
+      fontSize: "0.9rem",
       color: COLORS.inkMuted,
       minWidth: '200px',
     }}>
@@ -65,7 +65,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function SpecialtyBreakdownChart({ series }) {
   if (!series?.length) return (
-    <p style={{ fontFamily: COLORS.mono, fontSize: '0.8rem', color: COLORS.inkFaint, padding: '1rem 0' }}>
+    <p style={{ fontFamily: COLORS.mono, fontSize: "0.95rem", color: COLORS.inkFaint, padding: '1rem 0' }}>
       No data. Run <code>node scripts/fetch-hospital-activity.js</code> to populate.
     </p>
   );
@@ -81,20 +81,20 @@ export default function SpecialtyBreakdownChart({ series }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 11, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
             interval={2}
           />
           <YAxis
             tickFormatter={v => `${(v / 1e6).toFixed(0)}M`}
-            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             width={44}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend wrapperStyle={{ fontFamily: COLORS.mono, fontSize: '0.72rem', paddingTop: '8px' }} />
+          <Legend wrapperStyle={{ fontFamily: COLORS.mono, fontSize: "0.9rem", paddingTop: '8px' }} />
           {groups.map(g => (
             <Area
               key={g}
@@ -110,7 +110,7 @@ export default function SpecialtyBreakdownChart({ series }) {
           ))}
         </AreaChart>
       </ResponsiveContainer>
-      <p style={{ fontFamily: COLORS.mono, fontSize: '0.75rem', color: COLORS.inkFaint, letterSpacing: '0.03em', marginTop: '0.25rem' }}>
+      <p style={{ fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint, letterSpacing: '0.03em', marginTop: '0.25rem' }}>
         Source: NHS Digital HES · Finished Consultant Episodes by treatment specialty group
       </p>
     </div>

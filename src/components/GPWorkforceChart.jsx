@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.accentBlue}`,
       padding: '0.6rem 0.8rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.7rem',
+      fontSize: "0.9rem",
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.4rem' }}>{label}</div>
@@ -50,7 +50,7 @@ export default function GPWorkforceChart({ series }) {
 
   if (data.length === 0) {
     return (
-      <p style={{ fontFamily: COLORS.mono, fontSize: '0.75rem', color: COLORS.inkFaint, padding: '1rem 0' }}>
+      <p style={{ fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint, padding: '1rem 0' }}>
         No data available. Run <code>node scripts/fetch-gp-workforce.js</code> to populate.
       </p>
     );
@@ -66,7 +66,7 @@ export default function GPWorkforceChart({ series }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 9.5, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
           />
@@ -76,7 +76,7 @@ export default function GPWorkforceChart({ series }) {
             orientation="left"
             domain={[0, Math.ceil(maxGPs / 5000) * 5000]}
             tickFormatter={v => `${(v / 1000).toFixed(0)}k`}
-            tick={{ fontFamily: COLORS.mono, fontSize: 10, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             width={40}
@@ -87,14 +87,14 @@ export default function GPWorkforceChart({ series }) {
             orientation="right"
             domain={[1500, 2600]}
             tickFormatter={v => v.toLocaleString()}
-            tick={{ fontFamily: COLORS.mono, fontSize: 10, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             width={48}
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: '0.65rem', paddingTop: '8px' }}
+            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: "0.9rem", paddingTop: '8px' }}
           />
           <Bar
             yAxisId="gp"
@@ -128,7 +128,7 @@ export default function GPWorkforceChart({ series }) {
         </ComposedChart>
       </ResponsiveContainer>
       <p style={{
-        fontFamily: COLORS.mono, fontSize: '0.65rem', color: COLORS.inkFaint,
+        fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint,
         letterSpacing: '0.04em', marginTop: '0.25rem',
       }}>
         Source: NHS Digital General Practice Workforce Statistics · September FTE snapshot each year ·

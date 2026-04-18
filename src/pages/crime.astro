@@ -1,0 +1,288 @@
+---
+import Base from '../layouts/Base.astro';
+import CSEWTrendChart from '../components/CSEWTrendChart.jsx';
+import ProsecutionsRatioCharts from '../components/ProsecutionsRatioCharts.jsx';
+import SentencingChart from '../components/SentencingChart.jsx';
+import PrisonPopulationChart from '../components/PrisonPopulationChart.jsx';
+import PrisonDemographicsChart from '../components/PrisonDemographicsChart.jsx';
+import ReoffendingChart from '../components/ReoffendingChart.jsx';
+import CrimesPerOfficerChart from '../components/CrimesPerOfficerChart.jsx';
+import CrimeConcentrationChart from '../components/CrimeConcentrationChart.jsx';
+import crime from '../../data/crime-trends.json';
+
+const csew    = crime._csew_annual.series;
+const police  = crime._police_officers.series;
+const prosec  = crime._prosecutions.series;
+const prison  = crime._prison_population;
+const sent    = crime._sentencing;
+const reoff   = crime._reoffending;
+
+const latestCsew   = csew[csew.length - 1];
+const latestPolice = police[police.length - 1];
+const latestPrison = prison.total_series[prison.total_series.length - 1];
+const latestReoff  = reoff.rate_series[reoff.rate_series.length - 1];
+---
+
+<Base title="Crime & Policing — UK Public Numbers">
+  <div class="hero">
+    <div class="hero-label">ONS · Home Office · Ministry of Justice · Updated annually</div>
+    <h2 class="hero-headline">Crime &amp; policing</h2>
+    <p class="hero-sub">
+      Crime trends, police numbers, courts, sentencing, and reoffending in England and Wales.
+      Survey data from the CSEW provides a consistent long-run measure unaffected by recording practice changes.
+    </p>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-item">
+      <span class="stat-value">{latestCsew.incidents.toFixed(1)}M</span>
+      <span class="stat-label">CSEW incidents {latestCsew.period}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{(latestPolice.headcount / 1000).toFixed(0)}k</span>
+      <span class="stat-label">Police officers {latestPolice.period}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{(latestPrison.population / 1000).toFixed(1)}k</span>
+      <span class="stat-label">Prison population {latestPrison.period}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{latestReoff.rate}%</span>
+      <span class="stat-label">Reoffending rate {latestReoff.period}</span>
+    </div>
+  </div>
+
+  <!-- CSEW crime trend + crimes per officer -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Crime survey trend</h2>
+    <span class="section-meta">CSEW incidents · police headcount · crimes per officer · 1993/94–present</span>
+  </div>
+  <div class="chart-pair">
+    <div class="chart-panel chart-panel--half">
+      <div class="chart-panel-label">CSEW incidents &amp; police officer numbers</div>
+      <CSEWTrendChart csewSeries={csew} policeSeries={police} client:load />
+    </div>
+    <div class="chart-panel chart-panel--half">
+      <div class="chart-panel-label">Crimes per police officer</div>
+      <CrimesPerOfficerChart csewSeries={csew} policeSeries={police} client:load />
+    </div>
+  </div>
+
+  <!-- Prosecutions & convictions per officer -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Prosecutions &amp; convictions</h2>
+    <span class="section-meta">Prosecutions per crime (CSEW) · convictions per police officer · 2013–2024</span>
+  </div>
+  <div class="chart-panel">
+    <ProsecutionsRatioCharts prosecutionSeries={prosec} policeSeries={police} csewSeries={csew} client:load />
+  </div>
+
+  <!-- Crime concentration -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Who commits the crime?</h2>
+    <span class="section-meta">Concentration of proven reoffences by offender criminal history · {reoff.by_previous_offences.period}</span>
+  </div>
+  <div class="chart-panel">
+    <CrimeConcentrationChart
+      byPreviousOffences={reoff.by_previous_offences}
+      reoffenderCount={reoff.rate_series.find(d => d.period === reoff.by_previous_offences.period)?.reoffenders}
+      client:load
+    />
+  </div>
+
+  <!-- Average sentence by offence -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Average custodial sentences</h2>
+    <span class="section-meta">Months, adults · by offence type · 2024</span>
+  </div>
+  <div class="chart-panel">
+    <SentencingChart byOffence={sent.by_offence} client:load />
+  </div>
+
+  <!-- Prison population -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Prison population</h2>
+    <span class="section-meta">Average annual headcount · England &amp; Wales · with average sentence trend</span>
+  </div>
+  <div class="chart-panel">
+    <PrisonPopulationChart populationSeries={prison.total_series} sentencingTrend={sent.trend} client:load />
+  </div>
+
+  <!-- Prison demographics -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Prison population by ethnicity &amp; nationality</h2>
+    <span class="section-meta">% of prison population · 2024 snapshot</span>
+  </div>
+  <div class="chart-panel">
+    <PrisonDemographicsChart byEthnicity={prison.by_ethnicity} byNationality={prison.by_nationality} client:load />
+  </div>
+
+  <!-- Reoffending -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Reoffending</h2>
+    <span class="section-meta">Proven reoffending within 1 year · adults · and breakdown by criminal history</span>
+  </div>
+  <div class="chart-panel">
+    <ReoffendingChart rateSeries={reoff.rate_series} byPreviousOffences={reoff.by_previous_offences} client:load />
+  </div>
+
+  <div class="methodology-note">
+    <h3>About this data</h3>
+    <p>
+      The <strong>Crime Survey for England and Wales (CSEW)</strong> is a victimisation survey — it asks a random
+      sample of households whether they experienced crime in the past year. Because it is independent of
+      police recording practices, it provides the most consistent long-run measure of crime. These figures
+      exclude fraud and computer misuse to maintain comparability across years. COVID-19 disrupted fieldwork
+      in 2020/21 and 2021/22; those years are omitted.
+    </p>
+    <p>
+      <strong>Police officer numbers</strong> are headcounts at 31 March each year (all ranks, England &amp; Wales).
+      The sharp fall after 2010 reflects austerity-era budget cuts; the Police Uplift Programme from 2019
+      reversed much of the decline.
+    </p>
+    <p>
+      <strong>Prosecution and conviction statistics</strong> cover all offences dealt with at magistrates' courts
+      and Crown Court. The fall in 2020 reflects COVID-19 court closures. Conviction rate = convicted ÷ prosecuted.
+    </p>
+    <p>
+      <strong>Reoffending</strong> is measured as the proportion of adult offenders who commit at least one
+      proven further offence within one year of release from custody, caution, or non-custodial sentence.
+      The prolific offender breakdown shows that a small group with many prior convictions accounts for
+      a disproportionate share of all reoffences.
+    </p>
+    <p>
+      Sources:{' '}
+      <a href={crime._csew_annual.source_url} target="_blank" rel="noopener">ONS Crime Survey</a> ·{' '}
+      <a href={crime._police_officers.source_url} target="_blank" rel="noopener">Home Office Police Workforce</a> ·{' '}
+      <a href={crime._prosecutions.source_url} target="_blank" rel="noopener">MoJ Criminal Justice Statistics</a> ·{' '}
+      <a href={crime._prison_population.source_url} target="_blank" rel="noopener">MoJ Offender Management Statistics</a> ·{' '}
+      <a href={crime._reoffending.source_url} target="_blank" rel="noopener">MoJ Proven Reoffending Statistics</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    font-family: var(--display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .chart-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-panel {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+    padding: 1.5rem 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-panel--half {
+    margin-bottom: 0;
+  }
+
+  .chart-panel-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .chart-section-header {
+    margin-top: 2.5rem;
+  }
+
+  .methodology-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-left: 3px solid var(--ink-faint);
+  }
+
+  .methodology-note h3 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p:last-child { margin-bottom: 0; }
+
+  .methodology-note a {
+    color: var(--ink-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .chart-pair {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-panel--half {
+      margin-bottom: 1.25rem;
+    }
+
+    .chart-panel--half:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stat-strip {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stat-strip {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

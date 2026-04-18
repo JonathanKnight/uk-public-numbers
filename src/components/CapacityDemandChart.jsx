@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.accent}`,
       padding: '0.6rem 0.8rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.7rem',
+      fontSize: "0.9rem",
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.4rem' }}>{label}</div>
@@ -62,7 +62,7 @@ export default function CapacityDemandChart({ bedsAnnual, aeAnnual }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 9.5, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
             interval={1}
@@ -72,7 +72,7 @@ export default function CapacityDemandChart({ bedsAnnual, aeAnnual }) {
             yAxisId="beds"
             domain={[100000, 160000]}
             ticks={[100000, 110000, 120000, 130000, 140000, 150000, 160000]}
-            tick={{ fontFamily: COLORS.mono, fontSize: 9.5, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             tickFormatter={v => `${(v / 1000).toFixed(0)}k`}
@@ -84,7 +84,7 @@ export default function CapacityDemandChart({ bedsAnnual, aeAnnual }) {
             orientation="right"
             domain={[15, 32]}
             ticks={[15, 20, 25, 30]}
-            tick={{ fontFamily: COLORS.mono, fontSize: 9.5, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 14, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             tickFormatter={v => `${v}M`}
@@ -92,7 +92,7 @@ export default function CapacityDemandChart({ bedsAnnual, aeAnnual }) {
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: '0.65rem', paddingTop: '8px' }}
+            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: "0.9rem", paddingTop: '8px' }}
           />
           <Bar
             yAxisId="beds"
@@ -116,7 +116,7 @@ export default function CapacityDemandChart({ bedsAnnual, aeAnnual }) {
         </ComposedChart>
       </ResponsiveContainer>
       <p style={{
-        fontFamily: COLORS.mono, fontSize: '0.65rem', color: COLORS.inkFaint,
+        fontFamily: COLORS.mono, fontSize: "0.9rem", color: COLORS.inkFaint,
         letterSpacing: '0.04em', marginTop: '0.25rem',
       }}>
         Beds (left axis): NHS England KH03 · A&amp;E attendances (right axis): NHS England time series

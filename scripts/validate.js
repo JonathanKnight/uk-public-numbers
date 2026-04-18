@@ -138,6 +138,43 @@ try {
   }
 } catch (e) { fail('nhs-activity.json', '_load', e.message); }
 
+// ── CRIME TRENDS ──
+console.log('\nValidating crime-trends.json...');
+try {
+  const ct = loadJSON('crime-trends.json');
+
+  const csew = ct._csew_annual?.series ?? [];
+  pass('crime-trends', '_csew_annual.series', `${csew.length} year(s)`);
+  for (const d of csew) {
+    if (d.incidents < 3 || d.incidents > 25)
+      fail('crime-trends', `_csew_annual[${d.period}].incidents`, `${d.incidents}M is implausible (3–25M)`);
+  }
+
+  const police = ct._police_officers?.series ?? [];
+  pass('crime-trends', '_police_officers.series', `${police.length} year(s)`);
+  for (const d of police) {
+    if (d.headcount < 80_000 || d.headcount > 200_000)
+      fail('crime-trends', `_police_officers[${d.period}].headcount`, `${d.headcount} is implausible (80k–200k)`);
+  }
+
+  const prosec = ct._prosecutions?.series ?? [];
+  for (const d of prosec) {
+    if (d.prosecuted < 500_000 || d.prosecuted > 3_000_000)
+      fail('crime-trends', `_prosecutions[${d.period}].prosecuted`, `${d.prosecuted} is implausible`);
+    if (d.conviction_rate < 60 || d.conviction_rate > 100)
+      fail('crime-trends', `_prosecutions[${d.period}].conviction_rate`, `${d.conviction_rate}% is implausible`);
+  }
+  pass('crime-trends', '_prosecutions.series', `${prosec.length} year(s)`);
+
+  const prisonSeries = ct._prison_population?.total_series ?? [];
+  for (const d of prisonSeries) {
+    if (d.population < 50_000 || d.population > 120_000)
+      fail('crime-trends', `_prison_population[${d.period}].population`, `${d.population} is implausible`);
+  }
+  pass('crime-trends', '_prison_population.total_series', `${prisonSeries.length} year(s)`);
+
+} catch (e) { fail('crime-trends.json', '_load', e.message); }
+
 // ── RESULT ──
 console.log(`\n─────────────────────────────`);
 if (errors > 0) {

@@ -11,44 +11,6 @@
     "note": "Finished Consultant Episodes per NHS financial year by broad specialty group. Run fetch-hospital-activity.js to populate.",
     "series": [
       {
-        "period": "2022/23",
-        "total_fce": 0,
-        "fce_with_procedure": 0,
-        "emergency_fce": 0,
-        "day_case_fce": 0,
-        "elective_fce": 0,
-        "by_group": {
-          "surgery": 0,
-          "medicine": 0,
-          "emergency": 0,
-          "neurology": 0,
-          "obs_gynae": 0,
-          "paediatrics": 0,
-          "mental_health": 0,
-          "oncology": 0,
-          "other": 0
-        }
-      },
-      {
-        "period": "2023/24",
-        "total_fce": 0,
-        "fce_with_procedure": 0,
-        "emergency_fce": 0,
-        "day_case_fce": 0,
-        "elective_fce": 0,
-        "by_group": {
-          "surgery": 0,
-          "medicine": 0,
-          "emergency": 0,
-          "neurology": 0,
-          "obs_gynae": 0,
-          "paediatrics": 0,
-          "mental_health": 0,
-          "oncology": 0,
-          "other": 0
-        }
-      },
-      {
         "period": "2024/25",
         "total_fce": 22543971,
         "fce_with_procedure": null,
