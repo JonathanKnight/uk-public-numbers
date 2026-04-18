@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import MetricCard from '../components/MetricCard.astro';
+import AEChart from '../components/AEChart.jsx';
+import AEAttendancesChart from '../components/AEAttendancesChart.jsx';
+import WorkforceChart from '../components/WorkforceChart.jsx';
+import CapacityDemandChart from '../components/CapacityDemandChart.jsx';
+import nhs from '../../data/nhs.json';
+---
+
+<Base title="NHS — UK Public Numbers">
+  <div class="hero">
+    <div class="hero-label">NHS England · Updated monthly</div>
+    <h2 class="hero-headline">NHS performance</h2>
+    <p class="hero-sub">Monthly figures from NHS England statistical releases. Every number links to its source.</p>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">Key metrics</h2>
+    <span class="section-meta">NHS England</span>
+  </div>
+  <div class="metric-grid">
+    <MetricCard metric={nhs.ae_4hr_target} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.elective_waiting_list} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.waiting_over_18_weeks} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+    <MetricCard metric={nhs.nhs_vacancy_rate} sourceUrl={nhs._meta.source_url} sourceLabel="NHS England" />
+  </div>
+
+  <!-- A&E 4-hour performance -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">A&amp;E 4-hour performance</h2>
+    <span class="section-meta">April 2022 – present · Target: 95%</span>
+  </div>
+  <div class="chart-panel">
+    <AEChart
+      history={nhs.ae_4hr_target.history}
+      target={nhs.ae_4hr_target.target}
+      client:load
+    />
+  </div>
+
+  <!-- A&E attendances and capacity squeeze side by side -->
+  <div class="chart-row">
+    <div class="chart-col">
+      <div class="section-header chart-section-header">
+        <h2 class="section-title">Total A&amp;E attendances</h2>
+        <span class="section-meta">Annual · millions · 2011/12–2025/26</span>
+      </div>
+      <div class="chart-panel">
+        <AEAttendancesChart
+          series={nhs._ae_annual.series}
+          client:load
+        />
+      </div>
+    </div>
+    <div class="chart-col">
+      <div class="section-header chart-section-header">
+        <h2 class="section-title">Capacity vs demand</h2>
+        <span class="section-meta">Beds available vs A&amp;E attendances</span>
+      </div>
+      <div class="chart-panel">
+        <CapacityDemandChart
+          bedsAnnual={nhs._beds_annual.series}
+          aeAnnual={nhs._ae_annual.series}
+          client:load
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Workforce -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">NHS workforce</h2>
+    <span class="section-meta">HCHS doctors &amp; nurses · headcount · 2009/10–2025/26</span>
+  </div>
+  <div class="chart-panel">
+    <WorkforceChart
+      series={nhs._workforce_annual.series}
+      client:load
+    />
+  </div>
+</Base>
+
+<style>
+  .chart-panel {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+    padding: 1.5rem 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-section-header {
+    margin-top: 2.5rem;
+  }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .chart-col .chart-panel {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .chart-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

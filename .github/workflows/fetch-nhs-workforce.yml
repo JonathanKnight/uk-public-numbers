@@ -1,0 +1,37 @@
+name: Fetch NHS Workforce Data
+
+on:
+  # Run quarterly on the first Friday of January, April, July, October.
+  # A new annual data point (September snapshot) is published each November,
+  # so the January run captures it. Other runs catch any revisions.
+  schedule:
+    - cron: '0 10 1-7 1,4,7,10 5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Fetch NHS workforce data
+        run: node scripts/fetch-nhs-workforce.js
+
+      - name: Validate data
+        run: node scripts/validate.js
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'data: update NHS workforce figures [automated]'
+          file_pattern: 'data/nhs.json'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'

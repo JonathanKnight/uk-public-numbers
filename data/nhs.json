@@ -2,9 +2,247 @@
   "_meta": {
     "source": "NHS England Statistical Release",
     "source_url": "https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/",
-    "last_updated": "2026-04-17",
-    "next_expected": "2024-02-01",
+    "last_updated": "2026-04-18",
     "methodology": "Monthly A&E Attendances and Emergency Admissions. Four-hour standard measured as percentage of all A&E attendances where time from arrival to admission, transfer or discharge was under four hours."
+  },
+  "_ae_annual": {
+    "label": "Total A&E attendances (millions)",
+    "source_url": "https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/",
+    "note": "Annual totals by NHS financial year (Apr–Mar). Drop in 2020/21 reflects COVID-19 pandemic.",
+    "series": [
+      {
+        "period": "2011/12",
+        "value": 21.6
+      },
+      {
+        "period": "2012/13",
+        "value": 21.8
+      },
+      {
+        "period": "2013/14",
+        "value": 21.8
+      },
+      {
+        "period": "2014/15",
+        "value": 22.4
+      },
+      {
+        "period": "2015/16",
+        "value": 22.9
+      },
+      {
+        "period": "2016/17",
+        "value": 23.4
+      },
+      {
+        "period": "2017/18",
+        "value": 23.8
+      },
+      {
+        "period": "2018/19",
+        "value": 24.8
+      },
+      {
+        "period": "2019/20",
+        "value": 25
+      },
+      {
+        "period": "2020/21",
+        "value": 17.4
+      },
+      {
+        "period": "2021/22",
+        "value": 24.4
+      },
+      {
+        "period": "2022/23",
+        "value": 25.3
+      },
+      {
+        "period": "2023/24",
+        "value": 26.3
+      },
+      {
+        "period": "2024/25",
+        "value": 27.4
+      },
+      {
+        "period": "2025/26",
+        "value": 24.9
+      }
+    ]
+  },
+  "_beds_annual": {
+    "label": "NHS beds available overnight",
+    "source_url": "https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/",
+    "note": "Total overnight beds available (all sectors) at Q3 December snapshot. Source: KH03 return, NHS England.",
+    "series": [
+      {
+        "period": "2010/11",
+        "value": 139063
+      },
+      {
+        "period": "2011/12",
+        "value": 137963
+      },
+      {
+        "period": "2012/13",
+        "value": 133537
+      },
+      {
+        "period": "2013/14",
+        "value": 135489
+      },
+      {
+        "period": "2014/15",
+        "value": 134574
+      },
+      {
+        "period": "2015/16",
+        "value": 130298
+      },
+      {
+        "period": "2016/17",
+        "value": 129557
+      },
+      {
+        "period": "2017/18",
+        "value": 125206
+      },
+      {
+        "period": "2018/19",
+        "value": 127569
+      },
+      {
+        "period": "2019/20",
+        "value": 128326
+      },
+      {
+        "period": "2020/21",
+        "value": 121487
+      },
+      {
+        "period": "2021/22",
+        "value": 126669
+      },
+      {
+        "period": "2022/23",
+        "value": 129851
+      },
+      {
+        "period": "2023/24",
+        "value": 129219
+      }
+    ]
+  },
+  "_workforce_annual": {
+    "label": "NHS workforce headcount",
+    "source_url": "https://digital.nhs.uk/data-and-information/publications/statistical/nhs-workforce-statistics",
+    "note": "September headcount snapshot each year. HCHS = Hospital and Community Health Services. Source: NHS Workforce Statistics, NHS England / NHSD.",
+    "series": [
+      {
+        "period": "2009/10",
+        "total": 1154679,
+        "doctors": 102172,
+        "nurses": 315436
+      },
+      {
+        "period": "2010/11",
+        "total": 1164638,
+        "doctors": 103865,
+        "nurses": 316861
+      },
+      {
+        "period": "2011/12",
+        "total": 1141323,
+        "doctors": 105207,
+        "nurses": 313379
+      },
+      {
+        "period": "2012/13",
+        "total": 1117038,
+        "doctors": 106150,
+        "nurses": 305846
+      },
+      {
+        "period": "2013/14",
+        "total": 1111101,
+        "doctors": 107639,
+        "nurses": 308316
+      },
+      {
+        "period": "2014/15",
+        "total": 1131680,
+        "doctors": 109944,
+        "nurses": 312176
+      },
+      {
+        "period": "2015/16",
+        "total": 1151138,
+        "doctors": 111127,
+        "nurses": 314966
+      },
+      {
+        "period": "2016/17",
+        "total": 1175668,
+        "doctors": 112875,
+        "nurses": 318104
+      },
+      {
+        "period": "2017/18",
+        "total": 1193107,
+        "doctors": 116040,
+        "nurses": 317980
+      },
+      {
+        "period": "2018/19",
+        "total": 1216719,
+        "doctors": 118510,
+        "nurses": 320324
+      },
+      {
+        "period": "2019/20",
+        "total": 1256637,
+        "doctors": 123614,
+        "nurses": 326942
+      },
+      {
+        "period": "2020/21",
+        "total": 1309770,
+        "doctors": 129972,
+        "nurses": 340518
+      },
+      {
+        "period": "2021/22",
+        "total": 1355780,
+        "doctors": 135341,
+        "nurses": 350309
+      },
+      {
+        "period": "2022/23",
+        "total": 1391820,
+        "doctors": 139683,
+        "nurses": 359495
+      },
+      {
+        "period": "2023/24",
+        "total": 1467131,
+        "doctors": 147622,
+        "nurses": 378326
+      },
+      {
+        "period": "2024/25",
+        "total": 1523420,
+        "doctors": 156368,
+        "nurses": 399559
+      },
+      {
+        "period": "2025/26",
+        "total": 1544829,
+        "doctors": 163943,
+        "nurses": 409110
+      }
+    ]
   },
   "ae_4hr_target": {
     "label": "A&E seen within 4 hours",
@@ -14,7 +252,169 @@
     "target_label": "NHS target: 95%",
     "direction": "higher_is_better",
     "period": "March 2026",
-    "note": "Target has not been met since July 2015"
+    "note": "Target has not been met since July 2015",
+    "history": [
+      {
+        "period": "April 2022",
+        "value": 74.6
+      },
+      {
+        "period": "May 2022",
+        "value": 75.3
+      },
+      {
+        "period": "June 2022",
+        "value": 74.6
+      },
+      {
+        "period": "July 2022",
+        "value": 73.6
+      },
+      {
+        "period": "August 2022",
+        "value": 74.4
+      },
+      {
+        "period": "September 2022",
+        "value": 73.7
+      },
+      {
+        "period": "October 2022",
+        "value": 72.3
+      },
+      {
+        "period": "November 2022",
+        "value": 71.8
+      },
+      {
+        "period": "December 2022",
+        "value": 68.4
+      },
+      {
+        "period": "January 2023",
+        "value": 74.9
+      },
+      {
+        "period": "February 2023",
+        "value": 74
+      },
+      {
+        "period": "March 2023",
+        "value": 74
+      },
+      {
+        "period": "April 2023",
+        "value": 76.8
+      },
+      {
+        "period": "May 2023",
+        "value": 76.3
+      },
+      {
+        "period": "June 2023",
+        "value": 72.9
+      },
+      {
+        "period": "July 2023",
+        "value": 73.5
+      },
+      {
+        "period": "August 2023",
+        "value": 72.5
+      },
+      {
+        "period": "September 2023",
+        "value": 71.1
+      },
+      {
+        "period": "October 2023",
+        "value": 69.7
+      },
+      {
+        "period": "November 2023",
+        "value": 69.2
+      },
+      {
+        "period": "December 2023",
+        "value": 68.9
+      },
+      {
+        "period": "January 2024",
+        "value": 69.7
+      },
+      {
+        "period": "February 2024",
+        "value": 70.4
+      },
+      {
+        "period": "March 2024",
+        "value": 73.8
+      },
+      {
+        "period": "April 2024",
+        "value": 74
+      },
+      {
+        "period": "July 2024",
+        "value": 74.8
+      },
+      {
+        "period": "October 2024",
+        "value": 72.5
+      },
+      {
+        "period": "November 2024",
+        "value": 71.6
+      },
+      {
+        "period": "February 2025",
+        "value": 72.8
+      },
+      {
+        "period": "April 2025",
+        "value": 74.2
+      },
+      {
+        "period": "May 2025",
+        "value": 74.8
+      },
+      {
+        "period": "June 2025",
+        "value": 75
+      },
+      {
+        "period": "July 2025",
+        "value": 75.9
+      },
+      {
+        "period": "August 2025",
+        "value": 75.3
+      },
+      {
+        "period": "September 2025",
+        "value": 74.5
+      },
+      {
+        "period": "October 2025",
+        "value": 73.6
+      },
+      {
+        "period": "November 2025",
+        "value": 73.7
+      },
+      {
+        "period": "December 2025",
+        "value": 73.2
+      },
+      {
+        "period": "January 2026",
+        "value": 71.8
+      },
+      {
+        "period": "March 2026",
+        "value": 76.6
+      }
+    ]
   },
   "elective_waiting_list": {
     "label": "Patients on elective waiting list",
