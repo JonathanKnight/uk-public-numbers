@@ -244,6 +244,37 @@
       }
     ]
   },
+  "_gp_annual": {
+    "label": "GP workforce (primary care)",
+    "source_url": "https://digital.nhs.uk/data-and-information/publications/statistical/general-and-personal-medical-services",
+    "note": "September FTE snapshot each year. Fully qualified GPs (partners, salaried, locums, retainers) and GP registrars (trainees). Patients per GP = registered patients ÷ qualified GP FTE. Source: NHS Digital General Practice Workforce Statistics.",
+    "series": [
+      {
+        "period": "2022/23",
+        "qualified_fte": 23562.6,
+        "trainee_fte": 8358.3,
+        "patients_per_gp": null
+      },
+      {
+        "period": "2023/24",
+        "qualified_fte": 23402.2,
+        "trainee_fte": 8949.5,
+        "patients_per_gp": null
+      },
+      {
+        "period": "2024/25",
+        "qualified_fte": 23996.7,
+        "trainee_fte": 9288.7,
+        "patients_per_gp": null
+      },
+      {
+        "period": "2025/26",
+        "qualified_fte": 24420.9,
+        "trainee_fte": 9192.3,
+        "patients_per_gp": null
+      }
+    ]
+  },
   "ae_4hr_target": {
     "label": "A&E seen within 4 hours",
     "value": 76.6,

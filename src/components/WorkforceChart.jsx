@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.accentBlue}`,
       padding: '0.6rem 0.8rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.7rem',
+      fontSize: '0.8rem',
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.4rem' }}>{label}</div>
@@ -44,13 +44,13 @@ export default function WorkforceChart({ series }) {
           <CartesianGrid strokeDasharray="2 4" stroke={COLORS.paperRule} vertical={false} />
           <XAxis
             dataKey="period"
-            tick={{ fontFamily: COLORS.mono, fontSize: 9.5, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
             interval={2}
           />
           <YAxis
-            tick={{ fontFamily: COLORS.mono, fontSize: 10, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             tickFormatter={v => `${(v / 1000).toFixed(0)}k`}
@@ -58,7 +58,7 @@ export default function WorkforceChart({ series }) {
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: '0.65rem', paddingTop: '8px' }}
+            wrapperStyle={{ fontFamily: COLORS.mono, fontSize: '0.75rem', paddingTop: '8px' }}
           />
           <Line
             type="monotone"
@@ -81,7 +81,7 @@ export default function WorkforceChart({ series }) {
         </LineChart>
       </ResponsiveContainer>
       <p style={{
-        fontFamily: COLORS.mono, fontSize: '0.65rem', color: COLORS.inkFaint,
+        fontFamily: COLORS.mono, fontSize: '0.75rem', color: COLORS.inkFaint,
         letterSpacing: '0.04em', marginTop: '0.25rem',
       }}>
         Source: NHS Workforce Statistics, NHS England · September headcount snapshot each year

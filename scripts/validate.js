@@ -58,6 +58,18 @@ try {
   if (w18 < 0 || w18 > 100) fail('nhs', 'waiting_over_18_weeks', `${w18}% is out of range`);
   else pass('nhs', 'waiting_over_18_weeks', `${w18}% is plausible`);
 
+  // GP annual series: plausibility checks on each row
+  const gpSeries = nhs._gp_annual?.series ?? [];
+  pass('nhs', '_gp_annual.series', `${gpSeries.length} year(s) of GP data`);
+  for (const d of gpSeries) {
+    if (d.qualified_fte != null && (d.qualified_fte < 15_000 || d.qualified_fte > 50_000))
+      fail('nhs', `_gp_annual[${d.period}].qualified_fte`, `${d.qualified_fte} FTE is out of plausible range (15k–50k)`);
+    if (d.trainee_fte != null && (d.trainee_fte < 1_000 || d.trainee_fte > 30_000))
+      fail('nhs', `_gp_annual[${d.period}].trainee_fte`, `${d.trainee_fte} FTE is out of plausible range (1k–30k)`);
+    if (d.patients_per_gp != null && (d.patients_per_gp < 1_000 || d.patients_per_gp > 5_000))
+      fail('nhs', `_gp_annual[${d.period}].patients_per_gp`, `${d.patients_per_gp} is out of plausible range (1k–5k)`);
+  }
+
 } catch (e) { fail('nhs.json', '_load', e.message); }
 
 // ── ECONOMY ──

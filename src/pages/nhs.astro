@@ -4,6 +4,7 @@ import MetricCard from '../components/MetricCard.astro';
 import AEChart from '../components/AEChart.jsx';
 import AEAttendancesChart from '../components/AEAttendancesChart.jsx';
 import WorkforceChart from '../components/WorkforceChart.jsx';
+import GPWorkforceChart from '../components/GPWorkforceChart.jsx';
 import CapacityDemandChart from '../components/CapacityDemandChart.jsx';
 import nhs from '../../data/nhs.json';
 ---
@@ -68,14 +69,26 @@ import nhs from '../../data/nhs.json';
     </div>
   </div>
 
-  <!-- Workforce -->
+  <!-- Hospital & Community workforce -->
   <div class="section-header chart-section-header">
-    <h2 class="section-title">NHS workforce</h2>
+    <h2 class="section-title">NHS hospital &amp; community workforce</h2>
     <span class="section-meta">HCHS doctors &amp; nurses · headcount · 2009/10–2025/26</span>
   </div>
   <div class="chart-panel">
     <WorkforceChart
       series={nhs._workforce_annual.series}
+      client:load
+    />
+  </div>
+
+  <!-- GP workforce -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">GP workforce</h2>
+    <span class="section-meta">Qualified GPs &amp; trainees (FTE) · patients per GP · primary care England</span>
+  </div>
+  <div class="chart-panel">
+    <GPWorkforceChart
+      series={nhs._gp_annual.series}
       client:load
     />
   </div>

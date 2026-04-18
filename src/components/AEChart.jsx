@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       borderLeft: `3px solid ${COLORS.accent}`,
       padding: '0.6rem 0.8rem',
       fontFamily: COLORS.mono,
-      fontSize: '0.7rem',
+      fontSize: '0.8rem',
       color: COLORS.inkMuted,
     }}>
       <div style={{ color: COLORS.ink, fontWeight: 600, marginBottom: '0.25rem' }}>{label}</div>
@@ -58,7 +58,7 @@ export default function AEChart({ history, target }) {
           />
           <XAxis
             dataKey="label"
-            tick={{ fontFamily: COLORS.mono, fontSize: 10, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={{ stroke: COLORS.paperRule }}
             interval={3}
@@ -66,7 +66,7 @@ export default function AEChart({ history, target }) {
           <YAxis
             domain={[60, 100]}
             ticks={[65, 70, 75, 80, 85, 90, 95, 100]}
-            tick={{ fontFamily: COLORS.mono, fontSize: 10, fill: COLORS.inkFaint }}
+            tick={{ fontFamily: COLORS.mono, fontSize: 12, fill: COLORS.inkFaint }}
             tickLine={false}
             axisLine={false}
             tickFormatter={v => `${v}%`}
@@ -82,7 +82,7 @@ export default function AEChart({ history, target }) {
             <Label
               value="95% target"
               position="insideTopRight"
-              style={{ fontFamily: COLORS.mono, fontSize: 9, fill: COLORS.accent }}
+              style={{ fontFamily: COLORS.mono, fontSize: 11, fill: COLORS.accent }}
               offset={4}
             />
           </ReferenceLine>
@@ -99,7 +99,7 @@ export default function AEChart({ history, target }) {
       </ResponsiveContainer>
       <p style={{
         fontFamily: COLORS.mono,
-        fontSize: '0.65rem',
+        fontSize: '0.75rem',
         color: COLORS.inkFaint,
         letterSpacing: '0.04em',
         marginTop: '0.5rem',
