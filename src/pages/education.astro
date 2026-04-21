@@ -1,0 +1,348 @@
+---
+import Base from '../layouts/Base.astro';
+import SchoolPupilsChart from '../components/SchoolPupilsChart.jsx';
+import PISAChart from '../components/PISAChart.jsx';
+import SchoolResourcesChart from '../components/SchoolResourcesChart.jsx';
+import HEStudentTrendChart from '../components/HEStudentTrendChart.jsx';
+import TuitionFeesLoansChart from '../components/TuitionFeesLoansChart.jsx';
+import HEBySubjectChart from '../components/HEBySubjectChart.jsx';
+import UniversityRankingsChart from '../components/UniversityRankingsChart.jsx';
+import RGSubjectChart from '../components/RGSubjectChart.jsx';
+import GraduateSalariesChart from '../components/GraduateSalariesChart.jsx';
+import PupilsPerTeacherChart from '../components/PupilsPerTeacherChart.jsx';
+import ed from '../../data/education-trends.json';
+
+const pupils      = ed._schools_pupils;
+const funding     = ed._school_funding;
+const teachers    = ed._teachers;
+const pisa        = ed._pisa;
+const heStudents  = ed._he_students;
+const fees        = ed._tuition_fees;
+const loans       = ed._student_loans;
+const heSubject   = ed._he_by_subject;
+const rankings    = ed._university_rankings;
+const rgSubject   = ed._rg_undergrads;
+const salaries    = ed._graduate_salaries;
+
+const latestPupils   = pupils.series[pupils.series.length - 1];
+const latestTeachers = teachers.series[teachers.series.length - 1];
+const latestPisa     = pisa.series[pisa.series.length - 1];
+const latestHE       = heStudents.series[heStudents.series.length - 1];
+const latestLoans    = loans.series.filter(d => !d.is_projection).at(-1);
+const latestFee      = fees.series[fees.series.length - 1];
+const totalPupils    = latestPupils.primary + latestPupils.secondary;
+---
+
+<Base title="Education — UK Public Numbers">
+  <div class="hero">
+    <div class="hero-label">DfE · OECD · HESA · SLC · Updated annually</div>
+    <h2 class="hero-headline">Education</h2>
+    <p class="hero-sub">
+      Schools, universities, and outcomes across England and the UK.
+      From primary pupil numbers and PISA rankings to university costs,
+      international students, and graduate salaries.
+    </p>
+  </div>
+
+  <div class="stat-strip stat-strip--schools">
+    <div class="stat-item">
+      <span class="stat-value">{(totalPupils / 1000).toFixed(2)}M</span>
+      <span class="stat-label">School pupils {latestPupils.year}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{(latestTeachers.fte / 1000).toFixed(0)}k</span>
+      <span class="stat-label">Teachers (FTE) {latestTeachers.year}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{latestPisa.maths_rank}{latestPisa.maths_rank <= 3 ? 'rd' : latestPisa.maths_rank <= 1 ? 'st' : 'th'}</span>
+      <span class="stat-label">PISA maths rank {latestPisa.year}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">{(latestHE.total / 1000).toFixed(2)}M</span>
+      <span class="stat-label">HE students {latestHE.year}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">£{latestFee.fee.toLocaleString()}</span>
+      <span class="stat-label">Tuition fee cap {latestFee.year}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">£{latestLoans.balance_bn}bn</span>
+      <span class="stat-label">Student loans {latestLoans.year}</span>
+    </div>
+  </div>
+
+  <!-- School pupil numbers -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">School pupil numbers</h2>
+    <span class="section-meta">Primary &amp; secondary · state-funded schools · England · 2010–2029</span>
+  </div>
+  <div class="chart-pair">
+    <div class="chart-panel chart-panel--half">
+      <div class="chart-panel-label">Pupils by phase</div>
+      <SchoolPupilsChart series={pupils.series} projections={pupils.projections} client:load />
+    </div>
+    <div class="chart-panel chart-panel--half">
+      <div class="chart-panel-label">Pupils per teacher (FTE)</div>
+      <PupilsPerTeacherChart pupilsSeries={pupils.series} teacherSeries={teachers.series} client:load />
+    </div>
+  </div>
+
+  <!-- PISA -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">PISA international rankings</h2>
+    <span class="section-meta">England · reading, maths &amp; science · 2006–2022 · OECD</span>
+  </div>
+  <div class="chart-panel">
+    <PISAChart series={pisa.series} client:load />
+  </div>
+
+  <!-- School resources -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">School resources</h2>
+    <span class="section-meta">Per-pupil spending (2023–24 prices) · teacher headcount · England</span>
+  </div>
+  <div class="chart-panel">
+    <SchoolResourcesChart fundingSeries={funding.series} teacherSeries={teachers.series} client:load />
+  </div>
+
+  <!-- HE students -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Higher education student numbers</h2>
+    <span class="section-meta">Domestic &amp; international · all UK HEIs · 2008–09 to 2027–28</span>
+  </div>
+  <div class="chart-panel">
+    <HEStudentTrendChart series={heStudents.series} projections={heStudents.projections} client:load />
+  </div>
+
+  <!-- Tuition fees & loans -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Tuition fees &amp; student loans</h2>
+    <span class="section-meta">Annual fee cap · outstanding loan book · England</span>
+  </div>
+  <div class="chart-panel">
+    <TuitionFeesLoansChart feesSeries={fees.series} loansSeries={loans.series} client:load />
+  </div>
+
+  <!-- HE by subject -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Students by subject</h2>
+    <span class="section-meta">All students (UG + PG) · domestic &amp; international · UK HEIs · {heSubject.snapshot_year}</span>
+  </div>
+  <div class="chart-panel">
+    <HEBySubjectChart breakdown={heSubject.breakdown} snapshotYear={heSubject.snapshot_year} client:load />
+  </div>
+
+  <!-- University rankings -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">UK university global rankings</h2>
+    <span class="section-meta">QS World University Rankings 2025 · top 15 UK institutions</span>
+  </div>
+  <div class="chart-panel">
+    <UniversityRankingsChart rankings={rankings.rankings} client:load />
+  </div>
+
+  <!-- Russell Group by subject -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Russell Group: undergraduates by subject</h2>
+    <span class="section-meta">24 Russell Group universities · domestic &amp; international · {rgSubject.snapshot_year}</span>
+  </div>
+  <div class="chart-panel">
+    <RGSubjectChart bySubject={rgSubject.by_subject} snapshotYear={rgSubject.snapshot_year} client:load />
+  </div>
+
+  <!-- Graduate salaries -->
+  <div class="section-header chart-section-header">
+    <h2 class="section-title">Graduate starting salaries</h2>
+    <span class="section-meta">Median salary 15 months post-graduation · undergraduate &amp; postgraduate taught · all HE vs Russell Group</span>
+  </div>
+  <div class="chart-panel">
+    <GraduateSalariesChart subjects={salaries.subjects} client:load />
+  </div>
+
+  <div class="methodology-note">
+    <h3>About this data</h3>
+    <p>
+      <strong>School pupil numbers</strong> are taken from the DfE January school census and cover all pupils
+      in state-funded schools (maintained schools and academies) in England. Independent schools are excluded.
+      Projections are derived from ONS 2020-based national population projections applied to school-age cohorts.
+      Primary is falling as smaller birth cohorts from the early 2010s move through the system; secondary is still
+      rising as the larger 2008–2012 cohort progresses.
+    </p>
+    <p>
+      <strong>PISA</strong> (Programme for International Student Assessment) is conducted every three years by the OECD
+      and tests 15-year-olds in reading, mathematics, and science. England participates as a separate jurisdiction from
+      Scotland, Wales, and Northern Ireland. Rank is out of all participating education systems. England's improvement
+      since 2009 is attributed in part to curriculum reforms introduced under Gove (2010–14) whose effects appeared
+      in the 2018 cycle. The global score decline in 2022 reflects COVID-19 learning disruption across all countries.
+    </p>
+    <p>
+      <strong>School funding</strong> is expressed in real terms (2023–24 prices) using GDP deflators from HM Treasury
+      PESA. The Institute for Fiscal Studies (IFS) estimates that real per-pupil spending fell approximately 9% between
+      2009–10 and 2019–20 — the largest sustained cut since at least the 1970s. It has since recovered but remains
+      close to 2009–10 levels in real terms.
+    </p>
+    <p>
+      <strong>Higher education student numbers</strong> are from HESA (Higher Education Statistics Agency) and cover
+      all students registered at UK HEIs. International = non-UK domicile (includes EU). The fall in 2012–13 followed
+      the trebling of tuition fees. Growth from 2014 was driven primarily by rising international enrolments, especially
+      from China and India. The 2024 restriction on dependant visas for international postgraduate students has
+      significantly reduced new enrolments; the projections reflect a period of stagnation or modest decline.
+    </p>
+    <p>
+      <strong>Tuition fees</strong> apply to home (UK-domicile) undergraduate students at English providers.
+      Scottish students studying in Scotland continue to pay no fees. The fee cap has been frozen in cash terms at
+      £9,250 from 2017 to 2024, representing a significant real-terms reduction in universities' income per student.
+      The 2025 increase to £9,535 remains well below inflation since 2017.
+    </p>
+    <p>
+      <strong>Student loans</strong> outstanding balance is from the Student Loans Company. The OBR estimates that
+      approximately 40% of new lending will never be repaid (the "resource cost"). Under Plan 2 (2012–23 entrants),
+      loans are written off after 30 years; Plan 5 (2023+ entrants) extends this to 40 years. The loan book is
+      projected to continue rising as new lending exceeds repayments for the foreseeable future.
+    </p>
+    <p>
+      <strong>Russell Group subject breakdown</strong> is estimated from HESA HECOS provider-level data for the
+      24 current Russell Group member institutions. These are approximate figures; HESA does not publish pre-aggregated
+      Russell Group totals. International proportions are highest in Business (&gt;50%) and STEM (&gt;35%),
+      reflecting both demand for UK qualifications and visa patterns.
+    </p>
+    <p>
+      <strong>Graduate starting salaries</strong> are median annual earnings 15 months after graduation, from the HESA
+      Graduate Outcomes survey 2021–22, covering UK graduates in full-time employment. Russell Group figures are
+      estimated from provider-level Graduate Outcomes data and reflect the selection effects (higher entry grades,
+      more London-based graduates) of attending a research-intensive university. The Business postgraduate premium
+      reflects MBA and specialist master's programmes placing into finance and consulting roles.
+    </p>
+    <p>
+      Sources:{' '}
+      <a href={pupils.source_url} target="_blank" rel="noopener">DfE School Pupils</a> ·{' '}
+      <a href={funding.source_url} target="_blank" rel="noopener">IFS School Spending</a> ·{' '}
+      <a href={teachers.source_url} target="_blank" rel="noopener">DfE School Workforce</a> ·{' '}
+      <a href={pisa.source_url} target="_blank" rel="noopener">OECD PISA</a> ·{' '}
+      <a href={heStudents.source_url} target="_blank" rel="noopener">HESA Student Statistics</a> ·{' '}
+      <a href={loans.source_url} target="_blank" rel="noopener">Student Loans Company</a> ·{' '}
+      <a href={rankings.source_url} target="_blank" rel="noopener">QS World Rankings</a> ·{' '}
+      <a href={salaries.source_url} target="_blank" rel="noopener">HESA Graduate Outcomes</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .stat-strip {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+  }
+
+  .stat-strip--schools {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    font-family: var(--display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .chart-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-panel--half {
+    margin-bottom: 0;
+  }
+
+  .chart-panel-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .chart-panel {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-top: 3px solid var(--ink-faint);
+    padding: 1.5rem 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-section-header {
+    margin-top: 2.5rem;
+  }
+
+  .methodology-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-rule);
+    border-left: 3px solid var(--ink-faint);
+  }
+
+  .methodology-note h3 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+
+  .methodology-note p:last-child { margin-bottom: 0; }
+
+  .methodology-note a {
+    color: var(--ink-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .chart-pair { grid-template-columns: 1fr; }
+    .chart-panel--half:not(:last-child) { margin-bottom: 1.25rem; }
+  }
+
+  @media (max-width: 1100px) {
+    .stat-strip--schools { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 700px) {
+    .stat-strip--schools { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .stat-strip--schools { grid-template-columns: 1fr; }
+  }
+</style>

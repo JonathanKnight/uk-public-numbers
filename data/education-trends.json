@@ -1,0 +1,269 @@
+{
+  "_schools_pupils": {
+    "label": "Pupils in state-funded schools, England",
+    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/school-pupils-and-their-characteristics",
+    "note": "State-funded schools including maintained schools and academies. January census each year. Primary = reception to year 6 (ages 5–11); Secondary = year 7 to year 11 (ages 11–16). Projections based on ONS 2020-based national population projections and DfE school-place planning assumptions.",
+    "series": [
+      { "year": 2010, "primary": 3978, "secondary": 3124 },
+      { "year": 2011, "primary": 4048, "secondary": 3102 },
+      { "year": 2012, "primary": 4135, "secondary": 3092 },
+      { "year": 2013, "primary": 4251, "secondary": 3132 },
+      { "year": 2014, "primary": 4378, "secondary": 3179 },
+      { "year": 2015, "primary": 4488, "secondary": 3236 },
+      { "year": 2016, "primary": 4572, "secondary": 3285 },
+      { "year": 2017, "primary": 4645, "secondary": 3312 },
+      { "year": 2018, "primary": 4706, "secondary": 3352 },
+      { "year": 2019, "primary": 4747, "secondary": 3363 },
+      { "year": 2020, "primary": 4764, "secondary": 3394 },
+      { "year": 2021, "primary": 4777, "secondary": 3445 },
+      { "year": 2022, "primary": 4766, "secondary": 3490 },
+      { "year": 2023, "primary": 4731, "secondary": 3535 },
+      { "year": 2024, "primary": 4615, "secondary": 3670 }
+    ],
+    "projections": [
+      { "year": 2025, "primary": 4530, "secondary": 3700, "is_projection": true },
+      { "year": 2026, "primary": 4445, "secondary": 3715, "is_projection": true },
+      { "year": 2027, "primary": 4365, "secondary": 3705, "is_projection": true },
+      { "year": 2028, "primary": 4290, "secondary": 3680, "is_projection": true },
+      { "year": 2029, "primary": 4220, "secondary": 3645, "is_projection": true }
+    ]
+  },
+
+  "_school_funding": {
+    "label": "School spending per pupil, England",
+    "source_url": "https://ifs.org.uk/articles/school-spending-england",
+    "note": "Average school spending per pupil in real terms, 2023–24 prices. Includes state-funded primary and secondary schools. Derived from DfE and PESA data by the Institute for Fiscal Studies. The ~9% real-terms fall between 2009–10 and 2019–20 is a well-documented consequence of post-2010 austerity. Recovery since 2020 has been driven by the 2019 Spending Review and subsequent commitments.",
+    "series": [
+      { "year": "2009-10", "per_pupil_real": 7150 },
+      { "year": "2010-11", "per_pupil_real": 7000 },
+      { "year": "2011-12", "per_pupil_real": 6840 },
+      { "year": "2012-13", "per_pupil_real": 6710 },
+      { "year": "2013-14", "per_pupil_real": 6620 },
+      { "year": "2014-15", "per_pupil_real": 6570 },
+      { "year": "2015-16", "per_pupil_real": 6540 },
+      { "year": "2016-17", "per_pupil_real": 6540 },
+      { "year": "2017-18", "per_pupil_real": 6570 },
+      { "year": "2018-19", "per_pupil_real": 6560 },
+      { "year": "2019-20", "per_pupil_real": 6520 },
+      { "year": "2020-21", "per_pupil_real": 6980 },
+      { "year": "2021-22", "per_pupil_real": 7250 },
+      { "year": "2022-23", "per_pupil_real": 7820 },
+      { "year": "2023-24", "per_pupil_real": 7980 }
+    ]
+  },
+
+  "_teachers": {
+    "label": "Teacher workforce, state-funded schools, England",
+    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/school-workforce-in-england",
+    "note": "Full-time equivalent (FTE) teachers in state-funded schools. November census each year. Qualified Teacher Status (QTS) is the standard professional qualification for teaching in England. The decline 2019–21 reflects COVID-disrupted recruitment cycles; the increase since reflects government uplift targets.",
+    "series": [
+      { "year": 2010, "fte": 448400, "pct_qts": 99.3 },
+      { "year": 2011, "fte": 451200, "pct_qts": 99.2 },
+      { "year": 2012, "fte": 452400, "pct_qts": 99.1 },
+      { "year": 2013, "fte": 453800, "pct_qts": 99.0 },
+      { "year": 2014, "fte": 455700, "pct_qts": 98.9 },
+      { "year": 2015, "fte": 456600, "pct_qts": 98.9 },
+      { "year": 2016, "fte": 457300, "pct_qts": 98.8 },
+      { "year": 2017, "fte": 457200, "pct_qts": 98.8 },
+      { "year": 2018, "fte": 456400, "pct_qts": 98.8 },
+      { "year": 2019, "fte": 455900, "pct_qts": 98.8 },
+      { "year": 2020, "fte": 456500, "pct_qts": 98.7 },
+      { "year": 2021, "fte": 454200, "pct_qts": 98.8 },
+      { "year": 2022, "fte": 464500, "pct_qts": 98.9 },
+      { "year": 2023, "fte": 468300, "pct_qts": 98.9 }
+    ]
+  },
+
+  "_pisa": {
+    "label": "PISA rankings, England",
+    "source_url": "https://www.oecd.org/en/topics/pisa.html",
+    "note": "OECD Programme for International Student Assessment. Conducted every three years with 15-year-olds. England participates as a separate jurisdiction from Scotland, Wales, and Northern Ireland. Rank is position out of all participating education systems (countries and regions). Score is on the PISA scale where 500 = OECD average. The 2022 results showed global declines partly attributed to COVID-19 learning disruption.",
+    "series": [
+      { "year": 2006, "reading_score": 495, "reading_rank": 17, "maths_score": 495, "maths_rank": 24, "science_score": 515, "science_rank": 14, "participants": 57 },
+      { "year": 2009, "reading_score": 494, "reading_rank": 25, "maths_score": 492, "maths_rank": 28, "science_score": 514, "science_rank": 16, "participants": 65 },
+      { "year": 2012, "reading_score": 499, "reading_rank": 23, "maths_score": 494, "maths_rank": 26, "science_score": 514, "science_rank": 20, "participants": 65 },
+      { "year": 2015, "reading_score": 498, "reading_rank": 22, "maths_score": 492, "maths_rank": 27, "science_score": 509, "science_rank": 15, "participants": 72 },
+      { "year": 2018, "reading_score": 504, "reading_rank": 14, "maths_score": 502, "maths_rank": 18, "science_score": 505, "science_rank": 14, "participants": 79 },
+      { "year": 2022, "reading_score": 494, "reading_rank": 13, "maths_score": 489, "maths_rank": 11, "science_score": 500, "science_rank": 11, "participants": 81 }
+    ]
+  },
+
+  "_he_students": {
+    "label": "Higher education students at UK HEIs",
+    "source_url": "https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he",
+    "note": "All students (undergraduate and postgraduate, full-time and part-time) registered at UK higher education institutions. Domestic = UK domicile. International = non-UK domicile (includes EU). The sharp fall in 2012-13 followed the introduction of £9,000 fees; recovery was driven by rising postgraduate and international enrolments. The 2023 slowdown reflects Home Office changes to dependent visas (January 2024) which significantly reduced postgraduate taught international applications.",
+    "series": [
+      { "year": "2008-09", "total": 2396, "domestic": 2028, "international": 368 },
+      { "year": "2009-10", "total": 2402, "domestic": 2009, "international": 393 },
+      { "year": "2010-11", "total": 2496, "domestic": 2068, "international": 428 },
+      { "year": "2011-12", "total": 2496, "domestic": 2061, "international": 435 },
+      { "year": "2012-13", "total": 2342, "domestic": 1907, "international": 435 },
+      { "year": "2013-14", "total": 2328, "domestic": 1892, "international": 436 },
+      { "year": "2014-15", "total": 2383, "domestic": 1941, "international": 442 },
+      { "year": "2015-16", "total": 2456, "domestic": 2014, "international": 442 },
+      { "year": "2016-17", "total": 2502, "domestic": 2042, "international": 460 },
+      { "year": "2017-18", "total": 2546, "domestic": 2060, "international": 486 },
+      { "year": "2018-19", "total": 2584, "domestic": 2046, "international": 538 },
+      { "year": "2019-20", "total": 2646, "domestic": 2074, "international": 572 },
+      { "year": "2020-21", "total": 2751, "domestic": 2146, "international": 605 },
+      { "year": "2021-22", "total": 2862, "domestic": 2183, "international": 679 },
+      { "year": "2022-23", "total": 2937, "domestic": 2173, "international": 764 }
+    ],
+    "projections": [
+      { "year": "2023-24", "total": 2910, "domestic": 2160, "international": 750, "is_projection": true },
+      { "year": "2024-25", "total": 2860, "domestic": 2130, "international": 730, "is_projection": true },
+      { "year": "2025-26", "total": 2830, "domestic": 2110, "international": 720, "is_projection": true },
+      { "year": "2026-27", "total": 2820, "domestic": 2100, "international": 720, "is_projection": true },
+      { "year": "2027-28", "total": 2840, "domestic": 2100, "international": 740, "is_projection": true }
+    ]
+  },
+
+  "_tuition_fees": {
+    "label": "Annual tuition fee cap for home undergraduates, England",
+    "source_url": "https://www.gov.uk/government/publications/higher-education-and-research-act-2017-tuition-fee-limits",
+    "note": "Maximum annual fee chargeable to home (UK-domicile) undergraduate students at English higher education providers. Fees were introduced in 1998 (means-tested, upfront). Variable fees up to £3,000 were introduced from 2006-07 following the 2004 Higher Education Act. The 2012 tripling to £9,000 followed the Browne Review. The cap was frozen at £9,250 from 2017 to 2024, representing a significant real-terms cut in universities' income per student.",
+    "series": [
+      { "year": "1997-98", "fee": 0,    "note": "Free tuition" },
+      { "year": "1998-99", "fee": 1000, "note": "Means-tested upfront fee introduced" },
+      { "year": "2006-07", "fee": 3070, "note": "Variable fees up to £3,000 + RPI" },
+      { "year": "2012-13", "fee": 9000, "note": "Fee tripling following Browne Review" },
+      { "year": "2017-18", "fee": 9250, "note": "Cap raised; frozen until 2024" },
+      { "year": "2025-26", "fee": 9535, "note": "First real-terms rise since 2017" }
+    ]
+  },
+
+  "_student_loans": {
+    "label": "Outstanding student loan balance, England",
+    "source_url": "https://www.gov.uk/government/collections/student-loans-outstanding-debt",
+    "note": "Total outstanding balance of student loans issued by the Student Loans Company (SLC) to English-domiciled borrowers, nominal £bn, end of financial year. Plan 1 (pre-2012) loans have a lower interest rate and shorter repayment period; Plan 2 (2012–2023) and Plan 5 (post-2023) are the dominant growing cohorts. The OBR estimates the long-run 'resource cost' (proportion that will never be repaid) at around 40% of new lending. Projections are from OBR Fiscal Risks and Sustainability (2023) and Economic and Fiscal Outlook.",
+    "series": [
+      { "year": "2012-13", "balance_bn": 46, "is_projection": false },
+      { "year": "2013-14", "balance_bn": 54, "is_projection": false },
+      { "year": "2014-15", "balance_bn": 64, "is_projection": false },
+      { "year": "2015-16", "balance_bn": 76, "is_projection": false },
+      { "year": "2016-17", "balance_bn": 89, "is_projection": false },
+      { "year": "2017-18", "balance_bn": 105, "is_projection": false },
+      { "year": "2018-19", "balance_bn": 121, "is_projection": false },
+      { "year": "2019-20", "balance_bn": 140, "is_projection": false },
+      { "year": "2020-21", "balance_bn": 161, "is_projection": false },
+      { "year": "2021-22", "balance_bn": 182, "is_projection": false },
+      { "year": "2022-23", "balance_bn": 206, "is_projection": false },
+      { "year": "2023-24", "balance_bn": 236, "is_projection": false },
+      { "year": "2024-25", "balance_bn": 267, "is_projection": false },
+      { "year": "2025-26", "balance_bn": 293, "is_projection": true },
+      { "year": "2026-27", "balance_bn": 318, "is_projection": true },
+      { "year": "2027-28", "balance_bn": 342, "is_projection": true },
+      { "year": "2028-29", "balance_bn": 365, "is_projection": true }
+    ]
+  },
+
+  "_he_by_subject": {
+    "label": "HE students by broad subject, UK, 2022-23",
+    "source_url": "https://www.hesa.ac.uk/data-and-analysis/students/what-study",
+    "note": "All students (all levels and modes) registered at UK HEIs, 2022-23. HESA HECOS subject classification. Engineering & computing combines engineering/technology (275k) and computing (230k). Subjects allied to medicine includes nursing, pharmacy, physiotherapy, and allied health professions. Totals may not reconcile exactly with headline 2,937k due to combined/unclassified subjects.",
+    "snapshot_year": "2022-23",
+    "breakdown": [
+      { "subject": "Engineering & computing",     "total": 505, "domestic": 355, "international": 150 },
+      { "subject": "Business & management",       "total": 420, "domestic": 280, "international": 140 },
+      { "subject": "Subjects allied to medicine", "total": 330, "domestic": 300, "international": 30  },
+      { "subject": "Social sciences",             "total": 330, "domestic": 240, "international": 90  },
+      { "subject": "Creative arts & design",      "total": 255, "domestic": 195, "international": 60  },
+      { "subject": "Biological sciences",         "total": 200, "domestic": 150, "international": 50  },
+      { "subject": "Historical & philosophical",  "total": 150, "domestic": 125, "international": 25  },
+      { "subject": "Education",                   "total": 175, "domestic": 165, "international": 10  },
+      { "subject": "Medicine & dentistry",        "total": 145, "domestic": 125, "international": 20  },
+      { "subject": "Law",                         "total": 130, "domestic": 95,  "international": 35  },
+      { "subject": "Physical sciences & maths",   "total": 175, "domestic": 130, "international": 45  },
+      { "subject": "Languages",                   "total": 85,  "domestic": 70,  "international": 15  }
+    ]
+  },
+
+  "_university_rankings": {
+    "label": "QS World University Rankings 2025 — UK institutions",
+    "source_url": "https://www.topuniversities.com/world-university-rankings/2025",
+    "note": "QS World University Rankings 2025. Global rank out of ~1,500 ranked institutions. UK has more universities in the global top 100 than any country except the United States.",
+    "rankings": [
+      { "university": "Imperial College London", "rank": 2,  "city": "London" },
+      { "university": "University of Oxford",    "rank": 3,  "city": "Oxford" },
+      { "university": "University of Cambridge", "rank": 5,  "city": "Cambridge" },
+      { "university": "UCL",                     "rank": 9,  "city": "London" },
+      { "university": "King's College London",   "rank": 31, "city": "London" },
+      { "university": "University of Edinburgh", "rank": 34, "city": "Edinburgh" },
+      { "university": "University of Manchester","rank": 35, "city": "Manchester" },
+      { "university": "University of Bristol",   "rank": 51, "city": "Bristol" },
+      { "university": "LSE",                     "rank": 56, "city": "London" },
+      { "university": "University of Warwick",   "rank": 74, "city": "Coventry" },
+      { "university": "University of Glasgow",   "rank": 81, "city": "Glasgow" },
+      { "university": "Durham University",       "rank": 92, "city": "Durham" },
+      { "university": "Univ. of Birmingham",     "rank": 90, "city": "Birmingham" },
+      { "university": "Univ. of Sheffield",      "rank": 95, "city": "Sheffield" },
+      { "university": "Univ. of Nottingham",     "rank": 99, "city": "Nottingham" }
+    ]
+  },
+
+  "_rg_undergrads": {
+    "label": "Russell Group undergraduate students by subject, 2022-23",
+    "source_url": "https://www.hesa.ac.uk/data-and-analysis/students/what-study",
+    "note": "Approximate figures for the 24 Russell Group member universities, derived from HESA HECOS provider-level data (2022-23). Domestic = UK domicile; International = non-UK domicile (includes EU and non-EU). Subject groupings are broad aggregations: STEM includes engineering, computing, physical and biological sciences, and mathematics; Humanities includes historical, philosophical, and creative arts subjects. Medicine & health includes medicine, dentistry, and subjects allied to medicine. Figures are estimates and may differ slightly from exact HESA totals.",
+    "snapshot_year": "2022-23",
+    "by_subject": [
+      { "subject": "STEM",              "domestic": 153000, "international": 86000  },
+      { "subject": "Business",          "domestic": 46000,  "international": 50000  },
+      { "subject": "Law",               "domestic": 23000,  "international": 11000  },
+      { "subject": "Humanities",        "domestic": 43000,  "international": 11000  },
+      { "subject": "Languages",         "domestic": 13000,  "international": 4000   },
+      { "subject": "Medicine & health", "domestic": 57000,  "international": 8000   }
+    ]
+  },
+
+  "_graduate_salaries": {
+    "label": "Graduate starting salaries by subject and level, UK",
+    "source_url": "https://www.hesa.ac.uk/data-and-analysis/graduates/outcomes",
+    "note": "Median annual salary 15 months after graduation, UK graduates in full-time employment, from HESA Graduate Outcomes survey 2021-22. Subject groupings aggregate HESA HECOS categories. 'All HE' covers all UK providers. Russell Group graduates typically earn 15–20% more than the all-HE median, reflecting selective intake and subject mix. Postgraduate taught (PGT) includes MSc, LLM, MBA and other taught master's degrees. Medicine/health figures reflect NHS foundation training salaries for clinical graduates.",
+    "survey_year": "2021-22",
+    "subjects": [
+      {
+        "subject": "Medicine & health",
+        "ug_median": 38000,
+        "pgt_median": 45000,
+        "ug_rg_median": 40000,
+        "pgt_rg_median": 47000
+      },
+      {
+        "subject": "STEM",
+        "ug_median": 30000,
+        "pgt_median": 38000,
+        "ug_rg_median": 35000,
+        "pgt_rg_median": 43000
+      },
+      {
+        "subject": "Business",
+        "ug_median": 27000,
+        "pgt_median": 46000,
+        "ug_rg_median": 32000,
+        "pgt_rg_median": 54000
+      },
+      {
+        "subject": "Law",
+        "ug_median": 27000,
+        "pgt_median": 32000,
+        "ug_rg_median": 32000,
+        "pgt_rg_median": 40000
+      },
+      {
+        "subject": "Languages",
+        "ug_median": 25000,
+        "pgt_median": 28000,
+        "ug_rg_median": 29000,
+        "pgt_rg_median": 31000
+      },
+      {
+        "subject": "Humanities",
+        "ug_median": 24000,
+        "pgt_median": 27000,
+        "ug_rg_median": 27000,
+        "pgt_rg_median": 30000
+      }
+    ]
+  }
+}
