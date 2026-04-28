@@ -2,20 +2,20 @@
   "_meta": {
     "source": "Office for National Statistics / Office for Budget Responsibility",
     "source_url": "https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending",
-    "last_updated": "2026-04-15",
+    "last_updated": "2026-04-28",
     "methodology": "Public sector finances data from ONS. Debt as % GDP uses calendar year GDP estimates. Debt interest from OBR Economic and Fiscal Outlook."
   },
   "national_debt_pct_gdp": {
     "label": "National debt",
-    "value": 93.1,
+    "value": 93.8,
     "unit": "% of GDP",
     "direction": "lower_is_better",
-    "period": "2026 FEB",
+    "period": "2026 MAR",
     "note": "Highest sustained level since early 1960s. Excludes Bank of England."
   },
   "annual_borrowing": {
     "label": "Annual borrowing (deficit)",
-    "value": 155024000000,
+    "value": 150545000000,
     "unit": "£",
     "direction": "lower_is_better",
     "period": "2025",
