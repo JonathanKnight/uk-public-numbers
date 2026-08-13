@@ -2,7 +2,7 @@
   "_meta": {
     "source": "NHS England Statistical Release",
     "source_url": "https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/",
-    "last_updated": "2026-07-09",
+    "last_updated": "2026-08-13",
     "methodology": "Monthly A&E Attendances and Emergency Admissions. Four-hour standard measured as percentage of all A&E attendances where time from arrival to admission, transfer or discharge was under four hours."
   },
   "_ae_annual": {
@@ -277,12 +277,12 @@
   },
   "ae_4hr_target": {
     "label": "A&E seen within 4 hours",
-    "value": 74.6,
+    "value": 74.9,
     "unit": "%",
     "target": 95,
     "target_label": "NHS target: 95%",
     "direction": "higher_is_better",
-    "period": "June 2026",
+    "period": "July 2026",
     "note": "Target has not been met since July 2015",
     "history": [
       {
@@ -456,6 +456,10 @@
       {
         "period": "June 2026",
         "value": 74.6
+      },
+      {
+        "period": "July 2026",
+        "value": 74.9
       }
     ]
   },
